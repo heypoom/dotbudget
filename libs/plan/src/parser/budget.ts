@@ -1,3 +1,5 @@
+import {Parser} from 'expr-eval'
+
 import {frequencies} from '../constants'
 import {createLinesParser} from '../utils'
 
@@ -16,11 +18,15 @@ function parseBudget(line: string): Budget {
   if (!frequencies.includes(frequency as Frequency)) return
 
   return {
+    title,
+    category,
+
     isFlexible: !!isFlexible,
     frequency: frequency as Frequency,
-    category,
-    amount: amount.startsWith('(') ? Number(eval(amount)) : Number(amount),
-    title,
+
+    amount: amount.startsWith('(')
+      ? Number(Parser.evaluate(amount))
+      : Number(amount),
   }
 }
 

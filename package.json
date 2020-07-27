@@ -26,27 +26,29 @@
     "help": "nx help"
   },
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "expr-eval": "^2.0.2"
+  },
   "devDependencies": {
+    "@nrwl/eslint-plugin-nx": "10.0.6",
+    "@nrwl/jest": "10.0.6",
     "@nrwl/node": "^10.0.6",
     "@nrwl/react": "^10.0.6",
     "@nrwl/web": "^10.0.6",
     "@nrwl/workspace": "10.0.6",
     "@types/jest": "^26.0.7",
     "@types/node": "^14.0.26",
+    "@typescript-eslint/eslint-plugin": "2.19.2",
+    "@typescript-eslint/parser": "2.19.2",
     "dotenv": "6.2.0",
     "eslint": "6.8.0",
+    "eslint-config-prettier": "6.0.0",
     "jest": "^26.1.0",
     "prettier": "2.0.4",
+    "ts-jest": "25.2.1",
     "ts-node": "~7.0.0",
     "tslint": "~6.0.0",
-    "typescript": "~3.9.3",
-    "@nrwl/eslint-plugin-nx": "10.0.6",
-    "@typescript-eslint/parser": "2.19.2",
-    "@typescript-eslint/eslint-plugin": "2.19.2",
-    "eslint-config-prettier": "6.0.0",
-    "@nrwl/jest": "10.0.6",
-    "ts-jest": "25.2.1"
+    "typescript": "~3.9.3"
   },
   "browserslist": [
     "> 1%",
