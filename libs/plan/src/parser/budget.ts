@@ -1,4 +1,4 @@
-import {frequencies} from '../@types'
+import {frequencies} from '../constants'
 import {createLinesParser} from '../utils'
 
 import {Budget, Frequency} from '@dotbudget/plan'

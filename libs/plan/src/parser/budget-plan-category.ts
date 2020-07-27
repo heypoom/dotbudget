@@ -1,5 +1,5 @@
 import {toLines} from '../utils'
-import {planCategory} from '../@types'
+import {planCategory} from '../constants'
 
 import {PlanCategory, BudgetCategoryMap} from '@dotbudget/plan'
 

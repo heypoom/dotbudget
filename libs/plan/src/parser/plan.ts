@@ -1,4 +1,4 @@
-import {planCategory} from '../@types'
+import {planCategory} from '../constants'
 import {createLinesParser} from '../utils'
 
 import {Plan, PlanCategory} from '@dotbudget/plan'

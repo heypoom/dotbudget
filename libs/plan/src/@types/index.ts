@@ -1,14 +1,6 @@
-export const frequencies = ['daily', 'weekly', 'monthly', 'yearly'] as const
-export type Frequency = typeof frequencies[number]
+import {frequencies, planCategory} from '../constants'
 
-export const planCategory = [
-  'necessity',
-  'security',
-  'education',
-  'lifestyle',
-  'dream',
-  'investment',
-] as const
+export type Frequency = typeof frequencies[number]
 
 export type PlanCategory = typeof planCategory[number]
 export type BudgetCategoryMap = Record<string, PlanCategory>
