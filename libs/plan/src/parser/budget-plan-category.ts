@@ -1,6 +1,7 @@
 import {toLines} from '../utils'
+import {planCategory} from '../@types'
 
-import {PlanCategory, planCategory, BudgetCategoryMap} from '@dotbudget/plan'
+import {PlanCategory, BudgetCategoryMap} from '@dotbudget/plan'
 
 const categorizeBudgetRegex = new RegExp(`(${planCategory.join('|')})\\: (.*)`)
 

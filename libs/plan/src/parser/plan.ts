@@ -1,6 +1,7 @@
+import {planCategory} from '../@types'
 import {createLinesParser} from '../utils'
 
-import {Plan, PlanCategory, planCategory} from '@dotbudget/plan'
+import {Plan, PlanCategory} from '@dotbudget/plan'
 
 export const planRegex = new RegExp(`(${planCategory.join('|')}) (\\w+%?)`)
 

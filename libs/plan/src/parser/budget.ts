@@ -1,6 +1,7 @@
+import {frequencies} from '../@types'
 import {createLinesParser} from '../utils'
 
-import {Budget, Frequency, frequencies} from '@dotbudget/plan'
+import {Budget, Frequency} from '@dotbudget/plan'
 
 const budgetRegex = new RegExp(
   `(flexible)? ?(${frequencies.join('|')}) (\\w+) (\\d+|\\(.*\\)) (.*)`
