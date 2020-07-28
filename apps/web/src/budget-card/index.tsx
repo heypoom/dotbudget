@@ -11,6 +11,13 @@ export function BudgetCard(props: BudgetCardProps) {
     !props.isFlexible && 'opacity-75'
   )
 
+  const isOverBudget = props.spent > props.allocated
+
+  const spendingClassName = c(
+    'text-xl sm:text-2xl',
+    isOverBudget && 'bg-gradient-red text-gradient text-red'
+  )
+
   return (
     <div className={containerClass}>
       <BudgetCardTitle {...props} />
@@ -18,7 +25,7 @@ export function BudgetCard(props: BudgetCardProps) {
       <div className="p-4 px-6">
         <div className="text-4xl">{props.emoji || '📦️'}</div>
 
-        <div className="text-xl sm:text-2xl">
+        <div className={spendingClassName}>
           {props.isFlexible && (
             <span>
               {props.spent || 0} <small>of</small>{' '}

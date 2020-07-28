@@ -5,6 +5,7 @@ module.exports = {
       colors: {
         white: '#ffffff',
         green: '#2ecc71',
+        red: '#fe4b2e',
       },
       fontFamily: {
         sans: [

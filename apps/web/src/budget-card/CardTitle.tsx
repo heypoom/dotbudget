@@ -18,8 +18,10 @@ export function BudgetCardTitle(props: BudgetCardProps) {
       <div className={c(baseClass, 'bg-gradient-red shadow-md-pink')}>
         <span>{props.title}</span>
 
-        <OverspentTag className="absolute top-0 bg-white text-red-500 transform px-3 py-1 rounded-full shadow-md-pink">
-          <strong className="font-bold text-sm">Overspent!</strong>
+        <OverspentTag className="absolute top-0 bg-white transform px-3 py-1 rounded-full shadow-md-pink">
+          <strong className="font-bold text-sm bg-gradient-red text-gradient text-red">
+            Overspent!
+          </strong>
         </OverspentTag>
       </div>
     )
