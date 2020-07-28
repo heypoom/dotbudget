@@ -3,6 +3,7 @@ import c from 'classnames'
 import Ink from 'react-ink'
 
 import {BudgetCardTitle} from './CardTitle'
+import {BudgetDisplay} from './BudgetDisplay'
 import {BudgetCardPercent} from './CardPercent'
 
 import {BudgetCardProps} from './types'
@@ -30,13 +31,7 @@ export function BudgetCard(props: BudgetCardProps) {
         </div>
 
         <div className={spendingClass}>
-          {props.isFlexible && (
-            <span>
-              {props.spent || 0} <small className="font-normal">of</small>{' '}
-            </span>
-          )}
-
-          {props.allocated || 0}
+          <BudgetDisplay {...props} />
         </div>
       </div>
 
