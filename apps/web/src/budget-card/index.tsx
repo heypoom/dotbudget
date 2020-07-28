@@ -1,12 +1,13 @@
 import React from 'react'
 import c from 'classnames'
+import Ink from 'react-ink'
 
 import {BudgetCardTitle} from './CardTitle'
 import {BudgetCardPercent} from './CardPercent'
 
 export function BudgetCard(props: BudgetCardProps) {
   const containerClass = c(
-    'mx-auto flex flex-col rounded-lg shadow-xl w-full bg-white',
+    'relative mx-auto flex flex-col rounded-lg shadow-xl w-full bg-white',
     !props.isFlexible && 'opacity-75'
   )
 
@@ -29,6 +30,8 @@ export function BudgetCard(props: BudgetCardProps) {
       </div>
 
       <BudgetCardPercent {...props} />
+
+      <Ink opacity={0.05} />
     </div>
   )
 }

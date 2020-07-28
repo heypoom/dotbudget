@@ -38,6 +38,7 @@
     "noty": "^3.2.0-beta",
     "react": "16.13.1",
     "react-dom": "16.13.1",
+    "react-ink": "^6.4.0",
     "regenerator-runtime": "^0.13.7",
     "storeon": "^3.0.3"
   },
