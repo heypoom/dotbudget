@@ -1,5 +1,6 @@
 @font-face {
   font-family: JetBrains Mono;
+
   src: url(https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2)
     format('woff2');
   src: url(https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff/JetBrainsMono-Regular.woff)
@@ -20,3 +21,7 @@ body {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

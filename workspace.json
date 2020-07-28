@@ -43,7 +43,7 @@
         "serve": {
           "builder": "@nrwl/workspace:run-commands",
           "options": {
-            "command": "npx parcel ./apps/web/src/index.html"
+            "command": "npx parcel serve ./apps/web/src/index.html"
           }
         },
         "lint": {
