@@ -6,7 +6,7 @@ import {BudgetCardTitle} from './CardTitle'
 import {BudgetCardPercent} from './CardPercent'
 
 import {BudgetCardProps} from './types'
-import {primaryText, toTextColor} from '../ui/colors'
+import {toTextColor} from '../ui/colors'
 
 export function BudgetCard(props: BudgetCardProps) {
   const containerClass = c(
