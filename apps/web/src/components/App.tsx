@@ -25,14 +25,20 @@ export const iconMap = {
   transit: 'car',
 }
 
-const budgets: CurrentBudget[] = sortBy(
-  calculated.monthlyBudgets.map(b => ({
+function transformBudget(budget: CurrentBudget[]): CurrentBudget[] {
+  const budgets = calculated.monthlyBudgets.map(b => ({
     ...b,
     icon: iconMap[b.title] || iconMap[b.category] || 'money-bill-wave',
     spent: 700,
-  })),
-  o => !o.isFlexible
-)
+  }))
+
+  const fixedGoesLast = sortBy(budgets, o => !o.isFlexible)
+  const overGoesFirst = sortBy(fixedGoesLast, o => !(o.spent > o.allocated))
+
+  return overGoesFirst
+}
+
+const budgets = transformBudget(calculated.monthlyBudgets)
 
 export const App = () => (
   <main className="bg-gray-200 h-screen">
