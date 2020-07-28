@@ -36,9 +36,9 @@ export function BudgetCard(props: BudgetCardProps) {
         </div>
       </div>
 
-      <BudgetCardPercent {...props} />
-
       <Ink opacity={0.05} />
+
+      <BudgetCardPercent {...props} />
     </div>
   )
 }
