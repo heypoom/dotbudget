@@ -1,18 +1,5 @@
 import React from 'react'
 import c from 'classnames'
-import styled from '@emotion/styled'
-
-const OverspentTag = styled.div`
-  right: -18px;
-
-  --transform-rotate: 30deg;
-
-  @media screen and (max-width: 640px) {
-    left: -40px;
-    right: auto;
-    --transform-rotate: -30deg;
-  }
-`
 
 export function BudgetCardTitle(props: BudgetCardProps) {
   const baseClass =
@@ -23,13 +10,9 @@ export function BudgetCardTitle(props: BudgetCardProps) {
   if (isOverBudget) {
     return (
       <div className={c(baseClass, 'bg-gradient-red shadow-md-pink')}>
-        <span>{props.title}</span>
+        <i className="fas fa-exclamation-triangle" />
 
-        <OverspentTag className="absolute top-0 bottom-auto bg-white transform px-3 py-1 rounded-full shadow-md-pink">
-          <strong className="font-bold text-sm bg-gradient-red text-gradient text-red">
-            Overspent!
-          </strong>
-        </OverspentTag>
+        <span>&nbsp;{props.title}</span>
       </div>
     )
   }

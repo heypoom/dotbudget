@@ -5,6 +5,8 @@ import Ink from 'react-ink'
 import {BudgetCardTitle} from './CardTitle'
 import {BudgetCardPercent} from './CardPercent'
 
+import {BudgetCardProps} from './types'
+
 export function BudgetCard(props: BudgetCardProps) {
   const containerClass = c(
     'relative mx-auto flex flex-col rounded-lg shadow-xl w-full bg-white',
@@ -14,7 +16,7 @@ export function BudgetCard(props: BudgetCardProps) {
   const isOverBudget = props.spent > props.allocated
 
   const spendingClassName = c(
-    'text-xl sm:text-2xl',
+    'text-xl sm:text-2xl pt-2',
     isOverBudget && 'bg-gradient-red text-gradient text-red'
   )
 
@@ -23,7 +25,9 @@ export function BudgetCard(props: BudgetCardProps) {
       <BudgetCardTitle {...props} />
 
       <div className="p-4 px-6">
-        <div className="text-4xl">{props.emoji || '📦️'}</div>
+        <div className="text-4xl">
+          {props.icon && <i className={props.icon} />}
+        </div>
 
         <div className={spendingClassName}>
           {props.isFlexible && (
