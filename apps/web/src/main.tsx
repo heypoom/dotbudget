@@ -7,6 +7,8 @@ import {App} from './components/App'
 
 import {Noti} from './utils/notify'
 
+import './main.scss'
+
 ReactDOM.render(<App />, document.getElementById('root'))
 
 window.Noti = Noti

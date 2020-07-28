@@ -9,19 +9,12 @@ function addPurgeCSS() {
   const purgecss = require('@fullhuman/postcss-purgecss')
 
   if (!isDevelopment) {
-    const extractor = {
-      extract: content => content.match(/[A-z0-9-:/]+/g) || [],
-    }
-
-    const plugin = purgecss({
-      content: ['src/*.html'],
-      extractors: [{extractor, extensions: 'html'}],
-    })
+    const plugin = purgecss({content: ['./src/*.html']})
 
     plugins.push(plugin)
   }
 }
 
-addPurgeCSS()
+// addPurgeCSS()
 
 module.exports = {plugins}
