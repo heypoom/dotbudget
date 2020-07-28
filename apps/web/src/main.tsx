@@ -17,6 +17,6 @@ if (module.hot) {
 
     console.log('[HMR] Reloaded')
 
-    Noti.success('HMR Reloaded!', {timeout: 200})
+    Noti.success('HMR Reloaded!', {timeout: 100})
   })
 }

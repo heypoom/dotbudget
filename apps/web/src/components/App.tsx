@@ -1,18 +1,21 @@
 import React from 'react'
 import c from 'classnames'
 
-const categories = ['food', 'transportation', 'snacks']
-
-const categoryEmoji = {
-  food: '🍣',
-  transportation: '🚆',
-  snacks: '🍫',
+interface Budget {
+  title: string
+  category: string
+  allocated: number
+  spent: number
+  emoji: string
 }
 
-interface BudgetCardProps {
-  category: string
-  amount: number
+const budgets: Budget[] = [
+  {title: 'Dining', category: 'food', allocated: 50, spent: 30, emoji: '🍣'},
+  {title: 'Snacks', category: 'food', allocated: 40, emoji: '🍫'},
+  {title: 'BTS', category: 'transportation', allocated: 50, emoji: '🚆'},
+]
 
+type BudgetCardProps = Budget & {
   isOverBudget?: boolean
 }
 
@@ -30,7 +33,9 @@ function BudgetCardTitle(props: BudgetCardProps) {
 
   return (
     <div className={c(baseClass, 'bg-green shadow-md-green')}>
-      {props.category}
+      {props.title}
+
+      <span className="hidden md:inline">&nbsp;({props.category})</span>
     </div>
   )
 }
@@ -40,18 +45,20 @@ const BudgetCard = (props: BudgetCardProps) => (
     <BudgetCardTitle {...props} />
 
     <div className="p-4 px-6 bg-white rounded-bl-lg rounded-br-lg">
-      <div className="text-3xl">{categoryEmoji[props.category]}</div>
+      <div className="text-4xl">{props.emoji || '📦️'}</div>
 
-      <div className="text-4xl">{props.amount || 0}</div>
+      <div className="text-lg sm:text-3xl">
+        {props.spent || 0} / {props.allocated || 0}
+      </div>
     </div>
   </div>
 )
 
 export const App = () => (
-  <main className="bg-gray-100 h-screen">
-    <div className="grid grid-cols-3 lg:grid-cols-4 gap-4 p-6">
-      {categories.map(category => (
-        <BudgetCard category={category} amount={50} key={category} />
+  <main className="bg-gray-200 h-screen">
+    <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-5 gap-4 p-6">
+      {budgets.map(budget => (
+        <BudgetCard key={budget.title} {...budget} />
       ))}
     </div>
   </main>

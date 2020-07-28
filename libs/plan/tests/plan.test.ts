@@ -17,6 +17,8 @@ describe('Financial Planner', () => {
     const plan = parseFinancialPlan(SampleFile)
     const {allocations} = calculateFinancialPlan(plan, 130000)
 
+    allocations //?
+
     expect(allocations.BTS).toBe(1450)
     expect(allocations.Motorcycle).toBe(600)
   })
