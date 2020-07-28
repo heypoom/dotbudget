@@ -1,22 +1,57 @@
 import React from 'react'
+import c from 'classnames'
 
-const categories = ['🍣', '🏠', '🚆', '🍫']
+const categories = ['food', 'transportation', 'snacks']
+
+const categoryEmoji = {
+  food: '🍣',
+  transportation: '🚆',
+  snacks: '🍫',
+}
+
+interface BudgetCardProps {
+  category: string
+  amount: number
+
+  isOverBudget?: boolean
+}
+
+function BudgetCardTitle(props: BudgetCardProps) {
+  const baseClass =
+    'rounded-tl-lg rounded-tr-lg px-5 py-1 text-white text-center md:text-left shadow-md'
+
+  if (props.isOverBudget) {
+    return (
+      <div className={c(baseClass, 'bg-gradient-red shadow-md-pink')}>
+        Over Budget!
+      </div>
+    )
+  }
+
+  return (
+    <div className={c(baseClass, 'bg-green shadow-md-green')}>
+      {props.category}
+    </div>
+  )
+}
+
+const BudgetCard = (props: BudgetCardProps) => (
+  <div className="mx-auto flex flex-col rounded-lg shadow-xl w-full">
+    <BudgetCardTitle {...props} />
+
+    <div className="p-4 px-6">
+      <div className="text-3xl">{categoryEmoji[props.category]}</div>
+
+      <div className="text-4xl">{props.amount || 0}</div>
+    </div>
+  </div>
+)
 
 export const App = () => (
   <main>
     <div className="grid grid-cols-3 lg:grid-cols-4 gap-4 p-6">
       {categories.map(category => (
-        <div className="mx-auto flex flex-col bg-white rounded-lg shadow-xl w-full">
-          <div className="bg-green-500 rounded-tl-lg rounded-tr-lg px-3 py-1 text-white">
-            Under Budget!
-          </div>
-
-          <div className="p-4">
-            <div className="text-3xl">{category}</div>
-
-            <div className="text-4xl">500</div>
-          </div>
-        </div>
+        <BudgetCard category={category} amount={50} key={category} />
       ))}
     </div>
   </main>
