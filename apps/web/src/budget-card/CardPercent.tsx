@@ -1,5 +1,6 @@
 import React from 'react'
 import c from 'classnames'
+import {toBackground} from '../ui/colors'
 
 export function BudgetCardPercent(props: BudgetCardProps) {
   const percent = props.isFlexible
@@ -13,8 +14,7 @@ export function BudgetCardPercent(props: BudgetCardProps) {
   const percentClassName = c(
     'absolute left-0 bottom-0 h-1 rounded-bl-lg',
     (percent > 90 || !props.isFlexible) && 'rounded-br-lg',
-    !isOverBudget && 'bg-green shadow-md-green',
-    isOverBudget && 'bg-gradient-red shadow-md-pink'
+    toBackground(isOverBudget)
   )
 
   return <div className={percentClassName} style={percentStyle} />

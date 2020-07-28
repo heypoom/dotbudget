@@ -6,6 +6,7 @@ import {BudgetCardTitle} from './CardTitle'
 import {BudgetCardPercent} from './CardPercent'
 
 import {BudgetCardProps} from './types'
+import {primaryText, toTextColor} from '../ui/colors'
 
 export function BudgetCard(props: BudgetCardProps) {
   const containerClass = c(
@@ -14,10 +15,7 @@ export function BudgetCard(props: BudgetCardProps) {
   )
 
   const isOverBudget = props.spent > props.allocated
-
-  const textColor = isOverBudget
-    ? 'bg-gradient-red text-gradient text-red'
-    : 'text-green'
+  const textColor = toTextColor(isOverBudget)
 
   const spendingClass = c('text-xl sm:text-2xl pt-2', textColor)
   const iconClass = c('far', 'fa-' + props.icon, textColor)
