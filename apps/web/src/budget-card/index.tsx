@@ -32,7 +32,7 @@ export function BudgetCard(props: BudgetCardProps) {
         <div className={spendingClass}>
           {props.isFlexible && (
             <span>
-              {props.spent || 0} <small>of</small>{' '}
+              {props.spent || 0} <small className="font-normal">of</small>{' '}
             </span>
           )}
 
