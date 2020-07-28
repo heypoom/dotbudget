@@ -22,7 +22,7 @@ export interface Budget {
   isFlexible: boolean
   frequency: Frequency
   category: string
-  amount: number
+  allocated: number
   title: string
 }
 

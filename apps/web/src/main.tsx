@@ -3,9 +3,9 @@ import './polyfills'
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import {App} from '~components/App'
+import {App} from './components/App'
 
-import {Noti} from '~utils/notify'
+import {Noti} from './utils/notify'
 
 ReactDOM.render(<App />, document.getElementById('root'))
 

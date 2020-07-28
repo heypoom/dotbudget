@@ -1,21 +1,39 @@
 import React from 'react'
 import c from 'classnames'
 
-interface Budget {
-  title: string
-  category: string
-  allocated: number
+import {Budget} from '@dotbudget/plan'
+
+type CurrentBudget = Budget & {
   spent: number
   emoji: string
 }
 
-const budgets: Budget[] = [
-  {title: 'Dining', category: 'food', allocated: 50, spent: 30, emoji: '🍣'},
-  {title: 'Snacks', category: 'food', allocated: 40, emoji: '🍫'},
-  {title: 'BTS', category: 'transportation', allocated: 50, emoji: '🚆'},
+const budgets: CurrentBudget[] = [
+  {
+    title: 'Dining',
+    category: 'food',
+    allocated: 6000,
+    spent: 2000,
+    emoji: '🍣',
+    isFlexible: true,
+  },
+  {
+    title: 'Snacks',
+    category: 'food',
+    allocated: 6000,
+    spent: 1000,
+    emoji: '🍰',
+    isFlexible: true,
+  },
+  {
+    title: 'BTS',
+    category: 'transportation',
+    allocated: 1450,
+    emoji: '🚆',
+  },
 ]
 
-type BudgetCardProps = Budget & {
+type BudgetCardProps = CurrentBudget & {
   isOverBudget?: boolean
 }
 
@@ -41,14 +59,25 @@ function BudgetCardTitle(props: BudgetCardProps) {
 }
 
 const BudgetCard = (props: BudgetCardProps) => (
-  <div className="mx-auto flex flex-col rounded-lg shadow-xl w-full">
+  <div
+    className={c(
+      'mx-auto flex flex-col rounded-lg shadow-xl w-full bg-white',
+      !props.isFlexible && 'opacity-75'
+    )}
+  >
     <BudgetCardTitle {...props} />
 
-    <div className="p-4 px-6 bg-white rounded-bl-lg rounded-br-lg">
+    <div className="p-4 px-6 rounded-bl-lg rounded-br-lg">
       <div className="text-4xl">{props.emoji || '📦️'}</div>
 
-      <div className="text-lg sm:text-3xl">
-        {props.spent || 0} / {props.allocated || 0}
+      <div className="text-lg sm:text-2xl">
+        {props.isFlexible && (
+          <span>
+            {props.spent || 0} <small>of</small>{' '}
+          </span>
+        )}
+
+        {props.allocated || 0}
       </div>
     </div>
   </div>

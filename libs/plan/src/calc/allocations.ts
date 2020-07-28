@@ -1,10 +1,10 @@
 import {Budget, BudgetCategoryMap, PlanAllocations} from '@dotbudget/plan'
 
 export function getMonthlyAmount(b: Budget) {
-  if (b.frequency === 'monthly') return b.amount
-  if (b.frequency === 'daily') return b.amount * 30
-  if (b.frequency === 'yearly') return b.amount / 12
-  if (b.frequency === 'weekly') return b.amount / 7
+  if (b.frequency === 'monthly') return b.allocated
+  if (b.frequency === 'daily') return b.allocated * 30
+  if (b.frequency === 'yearly') return b.allocated / 12
+  if (b.frequency === 'weekly') return b.allocated / 7
 }
 
 export function getAllocations(budgets: Budget[], types: BudgetCategoryMap) {

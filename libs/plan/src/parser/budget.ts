@@ -24,7 +24,7 @@ function parseBudget(line: string): Budget {
     isFlexible: !!isFlexible,
     frequency: frequency as Frequency,
 
-    amount: amount.startsWith('(')
+    allocated: amount.startsWith('(')
       ? Number(Parser.evaluate(amount))
       : Number(amount),
   }

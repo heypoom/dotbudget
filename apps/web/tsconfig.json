@@ -6,9 +6,9 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "types": ["parcel-env"],
-    "baseUrl": "./src",
     "paths": {
-      "~*": ["./*"]
+      "~*": ["./*"],
+      "@dotbudget/plan": ["libs/plan/src/index.ts"]
     }
   },
   "files": [],

@@ -4,7 +4,10 @@
     "outDir": "../../dist/out-tsc",
     "module": "commonjs",
     "types": ["jest", "node"],
-    "composite": true
+    "paths": {
+      "~*": ["./*"],
+      "@dotbudget/plan": ["libs/plan/src/index.ts"]
+    }
   },
   "include": [
     "**/*.test.ts",
