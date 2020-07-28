@@ -35,52 +35,15 @@
       "schematics": {},
       "architect": {
         "build": {
-          "builder": "@nrwl/web:build",
+          "builder": "@nrwl/workspace:run-commands",
           "options": {
-            "outputPath": "dist/apps/web",
-            "index": "apps/web/src/index.html",
-            "main": "apps/web/src/main.tsx",
-            "polyfills": "apps/web/src/polyfills.ts",
-            "tsConfig": "apps/web/tsconfig.app.json",
-            "assets": ["apps/web/src/favicon.ico", "apps/web/src/assets"],
-            "styles": [],
-            "scripts": [],
-            "webpackConfig": "@nrwl/react/plugins/webpack"
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "apps/web/src/environments/environment.ts",
-                  "with": "apps/web/src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                }
-              ]
-            }
+            "command": "npx parcel build ./apps/web/src/index.html"
           }
         },
         "serve": {
-          "builder": "@nrwl/web:dev-server",
+          "builder": "@nrwl/workspace:run-commands",
           "options": {
-            "buildTarget": "web:build"
-          },
-          "configurations": {
-            "production": {
-              "buildTarget": "web:build:production"
-            }
+            "command": "npx parcel ./apps/web/src/index.html"
           }
         },
         "lint": {
@@ -133,9 +96,7 @@
       }
     }
   },
-  "cli": {
-    "defaultCollection": "@nrwl/react"
-  },
+  "cli": {},
   "schematics": {
     "@nrwl/workspace": {
       "library": {
@@ -145,23 +106,6 @@
     "@nrwl/cypress": {
       "cypress-project": {
         "linter": "eslint"
-      }
-    },
-    "@nrwl/react": {
-      "application": {
-        "style": "@emotion/styled",
-        "linter": "eslint",
-        "babel": true
-      },
-      "library": {
-        "style": "@emotion/styled",
-        "linter": "eslint"
-      },
-      "storybook-configuration": {
-        "linter": "eslint"
-      },
-      "component": {
-        "style": "@emotion/styled"
       }
     },
     "@nrwl/next": {
