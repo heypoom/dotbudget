@@ -1,4 +1,4 @@
-import {Budget, BudgetCategoryMap, PlanAllocations} from '@dotbudget/plan'
+import {Budget, BudgetCategoryMap, PlanAllocations} from '../@types'
 
 export function getMonthlyAmount(b: Budget) {
   if (b.frequency === 'monthly') return b.allocated
@@ -9,22 +9,31 @@ export function getMonthlyAmount(b: Budget) {
 
 export function getAllocations(budgets: Budget[], types: BudgetCategoryMap) {
   const allocations: Record<string, number> = {}
+  const monthlyBudgets: Budget[] = []
   const allocationsPerTypes: PlanAllocations = {}
   const breakdown: Record<string, number> = {}
 
   for (const budget of budgets) {
-    const allocation = getMonthlyAmount(budget)
+    const monthlyAmount = getMonthlyAmount(budget)
+    if (!monthlyAmount) continue
 
-    allocations[budget.title] = allocation
-
-    const planType = types[budget.category]
+    allocations[budget.title] = monthlyAmount
+    monthlyBudgets.push({...budget, allocated: monthlyAmount})
 
     if (!breakdown[budget.category]) breakdown[budget.category] = 0
-    breakdown[budget.category] += allocation
+    breakdown[budget.category] += monthlyAmount
+
+    const planType = types[budget.category]
+    if (!planType) continue
 
     if (!allocationsPerTypes[planType]) allocationsPerTypes[planType] = 0
-    allocationsPerTypes[planType] += allocation
+    allocationsPerTypes[planType] += monthlyAmount
   }
 
-  return {allocations, planAllocations: allocationsPerTypes, breakdown}
+  return {
+    allocations,
+    monthlyBudgets,
+    planAllocations: allocationsPerTypes,
+    breakdown,
+  }
 }

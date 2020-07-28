@@ -1,41 +1,38 @@
 import React from 'react'
+import {sortBy} from 'lodash'
 
 import {BudgetCard} from '../budget-card'
-
 import {CurrentBudget} from '../budget-card/types'
 
-const budgets: CurrentBudget[] = [
-  {
-    title: 'Dining',
-    category: 'food',
-    allocated: 6000,
-    spent: 2000,
-    icon: 'utensils-alt',
-    isFlexible: true,
-  },
-  {
-    title: 'Snacks',
-    category: 'food',
-    allocated: 6000,
-    spent: 1000,
-    icon: 'ice-cream',
-    isFlexible: true,
-  },
-  {
-    title: 'Motorcycle',
-    category: 'transportation',
-    allocated: 600,
-    spent: 1000,
-    icon: 'motorcycle',
-    isFlexible: true,
-  },
-  {
-    title: 'BTS',
-    category: 'transportation',
-    allocated: 1450,
-    icon: 'subway',
-  },
-]
+import {
+  parseFinancialPlan,
+  calculateFinancialPlan,
+} from '../../../../libs/plan/src'
+
+import {calculated} from '../utils/financial-plan'
+
+export const iconMap = {
+  Dining: 'utensils-alt',
+  Snacks: 'ice-cream',
+  Motorcycle: 'motorcycle',
+  BTS: 'subway',
+  Water: 'faucet-drip',
+  Electricity: 'bolt',
+  Cooking: 'oven',
+
+  food: 'utensils-alt',
+  rent: 'home',
+  transit: 'car',
+}
+
+const budgets: CurrentBudget[] = sortBy(
+  calculated.monthlyBudgets.map(b => ({
+    ...b,
+    icon: iconMap[b.title] || iconMap[b.category] || 'money-bill-wave',
+    spent: 700,
+  })),
+  o => !o.isFlexible
+)
 
 export const App = () => (
   <main className="bg-gray-200 h-screen">
@@ -46,3 +43,6 @@ export const App = () => (
     </div>
   </main>
 )
+
+window.parseFinancialPlan = parseFinancialPlan
+window.calculateFinancialPlan = calculateFinancialPlan

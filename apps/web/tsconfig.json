@@ -8,7 +8,7 @@
     "types": ["parcel-env"],
     "paths": {
       "~*": ["./*"],
-      "@dotbudget/plan": ["libs/plan/src/index.ts"]
+      "@dotbudget/plan": ["../../libs/plan/src/index.ts"]
     }
   },
   "files": [],
