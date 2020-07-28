@@ -1,7 +1,7 @@
 import Noty, {Options} from 'noty'
 
 export function notify(text: string, options: Options) {
-  const n = new Noty({text, theme: 'mint', timeout: 1000, ...options})
+  const n = new Noty({text, theme: 'nest', timeout: 1000, ...options})
 
   n.show()
 }
