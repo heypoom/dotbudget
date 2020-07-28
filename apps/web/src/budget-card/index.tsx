@@ -17,7 +17,7 @@ export function BudgetCard(props: BudgetCardProps) {
   const isOverBudget = props.spent > props.allocated
   const textColor = toTextColor(isOverBudget)
 
-  const spendingClass = c('text-xl sm:text-2xl pt-2', textColor)
+  const spendingClass = c('text-xl sm:text-2xl pt-2 font-medium', textColor)
   const iconClass = c('far', 'fa-' + props.icon, textColor)
 
   return (
