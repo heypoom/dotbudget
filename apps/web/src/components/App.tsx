@@ -10,7 +10,7 @@ const budgets: CurrentBudget[] = [
     category: 'food',
     allocated: 6000,
     spent: 2000,
-    icon: 'fal fa-utensils-alt',
+    icon: 'utensils-alt',
     isFlexible: true,
   },
   {
@@ -18,7 +18,7 @@ const budgets: CurrentBudget[] = [
     category: 'food',
     allocated: 6000,
     spent: 1000,
-    icon: 'fal fa-ice-cream',
+    icon: 'ice-cream',
     isFlexible: true,
   },
   {
@@ -26,14 +26,14 @@ const budgets: CurrentBudget[] = [
     category: 'transportation',
     allocated: 600,
     spent: 1000,
-    icon: 'fal fa-motorcycle',
+    icon: 'motorcycle',
     isFlexible: true,
   },
   {
     title: 'BTS',
     category: 'transportation',
     allocated: 1450,
-    icon: 'fal fa-subway',
+    icon: 'subway',
   },
 ]
 
