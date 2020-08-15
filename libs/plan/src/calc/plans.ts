@@ -12,12 +12,12 @@ export function getPlanAllocations(
   for (const plan of plans) {
     const amount = plan.fixed
       ? plan.fixed / 12
-      : (plan.percent / 100) * totalBudget
+      : (plan.percent ?? 0 / 100) * totalBudget
 
     allocations[plan.category] = amount
   }
 
-  const monthlyAllocations = sum(Object.values(allocations)) //?
+  const monthlyAllocations = sum(Object.values(allocations).map(x => x ?? 0)) //?
   remaining -= monthlyAllocations
 
   allocations.investment = remaining

@@ -3,9 +3,9 @@ export const sum = (list: number[]) =>
 
 export const toLines = (text: string) => text.split('\n').filter(x => x)
 
+export const isNotEmpty = <T>(v: T | null | undefined): v is NonNullable<T> =>
+  v !== null && v !== undefined
+
 export const createLinesParser = <T>(transform: (text: string) => T) => (
   text: string
-): T[] =>
-  toLines(text)
-    .map(transform)
-    .filter(x => x)
+): NonNullable<T>[] => toLines(text).map(transform).filter(isNotEmpty)

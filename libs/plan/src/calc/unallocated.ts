@@ -1,4 +1,6 @@
 import {PlanAllocations} from '@dotbudget/plan'
+import {planCategory} from '../constants'
+import {PlanCategory} from '../@types'
 
 export function calculateUnallocated(
   allocations: PlanAllocations,
@@ -7,10 +9,13 @@ export function calculateUnallocated(
   const unallocated: PlanAllocations = {}
 
   for (const type in planAllocations) {
-    const max = allocations[type]
-    const current = planAllocations[type]
+    const category = type as PlanCategory
+    if (!planCategory.includes(category)) return
 
-    unallocated[type] = max - current
+    const max = allocations[category] ?? 0
+    const current = planAllocations[category] ?? 0
+
+    unallocated[category] = max - current
   }
 
   return unallocated

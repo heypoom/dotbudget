@@ -32,3 +32,9 @@ export interface FinancialPlan {
   investment: Investment[]
   budgetCategory: BudgetCategoryMap
 }
+
+interface Meta {
+  id: number
+}
+
+export type WithMeta<T> = T & Meta

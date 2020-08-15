@@ -17,7 +17,10 @@ export function calculateFinancialPlan(p: FinancialPlan, totalBudget: number) {
 
   const unallocated = calculateUnallocated(plans, planAllocations)
 
-  const investmentPlan = calculateInvestmentPlan(plans.investment, p.investment)
+  const investmentPlan = calculateInvestmentPlan(
+    plans.investment ?? 0,
+    p.investment
+  )
 
   return {
     plans,

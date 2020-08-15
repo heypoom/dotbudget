@@ -26,8 +26,8 @@ export function getAllocations(budgets: Budget[], types: BudgetCategoryMap) {
     const planType = types[budget.category]
     if (!planType) continue
 
-    if (!allocationsPerTypes[planType]) allocationsPerTypes[planType] = 0
-    allocationsPerTypes[planType] += monthlyAmount
+    allocationsPerTypes[planType] =
+      monthlyAmount + (allocationsPerTypes[planType] ?? 0)
   }
 
   return {

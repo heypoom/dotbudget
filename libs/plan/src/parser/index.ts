@@ -3,7 +3,7 @@ import {parseBudgets} from './budget'
 import {parseInvestments} from './investment'
 import {parseBudgetCategory} from './budget-plan-category'
 
-import {FinancialPlan} from '@dotbudget/plan'
+import {FinancialPlan} from '..'
 
 export function parseFinancialPlan(text: string): FinancialPlan {
   const plan = parsePlans(text) //?

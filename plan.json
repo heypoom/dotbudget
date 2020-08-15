@@ -1,0 +1,117 @@
+{
+  "plan": [
+    {
+      "category": "necessity",
+      "percent": 25
+    },
+    {
+      "category": "security",
+      "fixed": 200000
+    },
+    {
+      "category": "education",
+      "percent": 0
+    },
+    {
+      "category": "lifestyle",
+      "percent": 10
+    },
+    {
+      "category": "dream",
+      "percent": 5
+    }
+  ],
+  "budget": [
+    {
+      "title": "Common Fee",
+      "category": "rent",
+      "isFlexible": false,
+      "frequency": "yearly",
+      "allocated": 15000
+    },
+    {
+      "title": "Rent",
+      "category": "rent",
+      "isFlexible": false,
+      "frequency": "monthly",
+      "allocated": 6000
+    },
+    {
+      "title": "Water",
+      "category": "rent",
+      "isFlexible": true,
+      "frequency": "monthly",
+      "allocated": 500
+    },
+    {
+      "title": "Electricity",
+      "category": "rent",
+      "isFlexible": true,
+      "frequency": "monthly",
+      "allocated": 2500
+    },
+    {
+      "title": "Motorcycle",
+      "category": "transit",
+      "isFlexible": true,
+      "frequency": "daily",
+      "allocated": 20
+    },
+    {
+      "title": "BTS",
+      "category": "transit",
+      "isFlexible": false,
+      "frequency": "monthly",
+      "allocated": 1450
+    },
+    {
+      "title": "Dining",
+      "category": "food",
+      "isFlexible": true,
+      "frequency": "daily",
+      "allocated": 200
+    },
+    {
+      "title": "Snacks",
+      "category": "food",
+      "isFlexible": true,
+      "frequency": "daily",
+      "allocated": 200
+    },
+    {
+      "title": "Cooking",
+      "category": "food",
+      "isFlexible": true,
+      "frequency": "monthly",
+      "allocated": 8000
+    }
+  ],
+  "investment": [
+    {
+      "category": "Gold",
+      "percent": 10
+    },
+    {
+      "category": "Thai Market",
+      "percent": 10
+    },
+    {
+      "category": "Cash",
+      "percent": 20
+    },
+    {
+      "category": "Dividend Stocks",
+      "percent": 20
+    },
+    {
+      "category": "Global Market",
+      "percent": 40
+    }
+  ],
+  "budgetCategory": {
+    "rent": "necessity",
+    "transit": "necessity",
+    "food": "necessity",
+    "travel": "lifestyle"
+  }
+}

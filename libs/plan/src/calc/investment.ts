@@ -3,8 +3,8 @@ import {Investment} from '@dotbudget/plan'
 export function calculateInvestmentPlan(
   investmentBudget: number,
   strategies: Investment[]
-) {
-  const investmentPlan = {}
+): Record<string, number> {
+  const investmentPlan: Record<string, number> = {}
 
   for (const strategy of strategies) {
     investmentPlan[strategy.category] =

@@ -5,9 +5,9 @@ import {Plan, PlanCategory} from '@dotbudget/plan'
 
 export const planRegex = new RegExp(`(${planCategory.join('|')}) (\\w+%?)`)
 
-export function parsePlan(line: string): Plan {
+export function parsePlan(line: string): Plan | null {
   const m = line.match(planRegex)
-  if (!m) return
+  if (!m) return null
 
   const [_, _category, amount] = m
   const category = _category as PlanCategory

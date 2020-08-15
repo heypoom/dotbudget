@@ -15,7 +15,7 @@ export function parseBudgetCategory(text: string): BudgetCategoryMap {
     const [_, type, categories] = m
 
     for (const c of categories.split(' ')) {
-      if (!planCategory.includes(type as PlanCategory)) return
+      if (!planCategory.includes(type as PlanCategory)) continue
 
       category[c] = type as PlanCategory
     }

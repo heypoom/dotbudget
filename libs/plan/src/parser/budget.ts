@@ -9,13 +9,13 @@ const budgetRegex = new RegExp(
   `(flexible)? ?(${frequencies.join('|')}) (\\w+) (\\d+|\\(.*\\)) (.*)`
 )
 
-function parseBudget(line: string): Budget {
+function parseBudget(line: string): Budget | null {
   const m = line.match(budgetRegex)
-  if (!m) return
+  if (!m) return null
 
   const [_, isFlexible, frequency, category, amount, title] = m
 
-  if (!frequencies.includes(frequency as Frequency)) return
+  if (!frequencies.includes(frequency as Frequency)) return null
 
   return {
     title,

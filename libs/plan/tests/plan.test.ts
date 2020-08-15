@@ -7,6 +7,7 @@ describe('Financial Planner', () => {
 
   it('should be able to parse financial plan', () => {
     const plan = parseFinancialPlan(SampleFile)
+    plan
 
     expect(plan.budget.length).toBe(9)
     expect(plan.plan.length).toBe(5)

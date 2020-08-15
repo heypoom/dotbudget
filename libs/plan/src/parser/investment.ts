@@ -4,9 +4,9 @@ import {Investment} from '@dotbudget/plan'
 
 export const investmentRegex = /invest in (.*) (\d+)%/
 
-export function parseInvestment(line: string): Investment {
+export function parseInvestment(line: string): Investment | null {
   const m = line.match(investmentRegex)
-  if (!m) return
+  if (!m) return null
 
   const [_, category, percent] = m
 
