@@ -50,7 +50,8 @@
     "react-dom": "16.13.1",
     "react-ink": "^6.4.0",
     "regenerator-runtime": "^0.13.7",
-    "storeon": "^3.0.3"
+    "storeon": "^3.0.3",
+    "yaml": "^2.0.0-0"
   },
   "devDependencies": {
     "@babel/core": "7.9.6",

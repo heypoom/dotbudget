@@ -1,14 +1,14 @@
-import {frequencies, planCategory} from '../constants'
+import {frequencies, jars} from '../constants'
 
 export type Frequency = typeof frequencies[number]
 
-export type PlanCategory = typeof planCategory[number]
-export type BudgetCategoryMap = Record<string, PlanCategory>
+export type Jars = typeof jars[number]
+export type BudgetCategoryMap = Record<string, Jars>
 
-export type PlanAllocations = Partial<Record<PlanCategory, number>>
+export type PlanAllocations = Partial<Record<Jars, number>>
 
 export interface Plan {
-  category: PlanCategory
+  category: Jars
   percent?: number
   fixed?: number
 }
