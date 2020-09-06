@@ -1,5 +1,5 @@
 module.exports = {
-  purge: ['./src/*.html', './src/**/*.tsx'],
+  purge: ['./**/*.tsx'],
   theme: {
     extend: {
       colors: {
@@ -29,4 +29,8 @@ module.exports = {
   },
   variants: {},
   plugins: [],
+  future: {
+    removeDeprecatedGapUtilities: true,
+    purgeLayersByDefault: true,
+  },
 }

@@ -1,3 +1,4 @@
+export const SamplePlanText = `
 // Allocations for each category.
 necessity 25%
 security 200000
@@ -30,3 +31,4 @@ invest in Global Market 40%
 07 flexible daily food 200 Dining
 08 flexible daily food 200 Snacks
 09 flexible monthly food 8000 Cooking
+`

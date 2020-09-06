@@ -1,20 +1,19 @@
-const tailwindcss = require('tailwindcss')
-const autoprefixer = require('autoprefixer')
+const purgeOptions = {
+  content: [
+    './pages/**/*.{js,jsx,ts,tsx}',
+    './components/**/*.{js,jsx,ts,tsx}',
+  ],
 
-const isDevelopment = process.env.NODE_ENV === 'development'
-
-const plugins = [tailwindcss, autoprefixer]
-
-function addPurgeCSS() {
-  const purgecss = require('@fullhuman/postcss-purgecss')
-
-  if (!isDevelopment) {
-    const plugin = purgecss({content: ['./src/*.html']})
-
-    plugins.push(plugin)
-  }
+  defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || [],
 }
 
-// addPurgeCSS()
-
-module.exports = {plugins}
+module.exports = {
+  plugins: [
+    ['tailwindcss', {config: './apps/web/tailwind.config.js'}],
+    'postcss-preset-env',
+    [
+      '@fullhuman/postcss-purgecss',
+      process.env.NODE_ENV === 'production' ? purgeOptions : false,
+    ],
+  ],
+}

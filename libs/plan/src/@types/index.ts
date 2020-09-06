@@ -19,6 +19,7 @@ export interface Investment {
 }
 
 export interface Budget {
+  id: string
   isFlexible: boolean
   frequency: Frequency
   category: string
@@ -26,7 +27,7 @@ export interface Budget {
   title: string
 }
 
-export interface FinancialPlan {
+export interface PlanBlueprint {
   plan: Plan[]
   budget: Budget[]
   investment: Investment[]

@@ -3,9 +3,21 @@ import {getAllocations} from './allocations'
 import {calculateUnallocated} from './unallocated'
 import {calculateInvestmentPlan} from './investment'
 
-import {FinancialPlan} from '../@types'
+import {PlanBlueprint, PlanAllocations, Budget} from '../@types'
 
-export function calculateFinancialPlan(p: FinancialPlan, totalBudget: number) {
+export interface CalculatedPlan {
+  plans: PlanAllocations
+  allocations: Record<string, number>
+  unallocated: PlanAllocations
+  breakdown: Record<string, number>
+  investmentPlan: Record<string, number>
+  monthlyBudgets: Budget[]
+}
+
+export function calculateFinancialPlan(
+  p: PlanBlueprint,
+  totalBudget: number
+): CalculatedPlan {
   const plans = getPlanAllocations(p.plan, totalBudget)
 
   const {

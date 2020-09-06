@@ -125,14 +125,7 @@
     ],
     "no-unexpected-multiline": "warn",
     "no-unreachable": "warn",
-    "no-unused-expressions": [
-      "error",
-      {
-        "allowShortCircuit": true,
-        "allowTernary": true,
-        "allowTaggedTemplates": true
-      }
-    ],
+    "no-unused-expressions": "off",
     "no-unused-labels": "warn",
     "no-useless-computed-key": "warn",
     "no-useless-concat": "warn",
@@ -187,7 +180,7 @@
     "react/require-render-return": "error",
     "react/style-prop-object": "warn",
     "react/jsx-no-useless-fragment": "warn",
-    "jsx-a11y/accessible-emoji": "off",
+    "jsx-a11y/accessible-emoji": "warn",
     "jsx-a11y/alt-text": "warn",
     "jsx-a11y/anchor-has-content": "warn",
     "jsx-a11y/anchor-is-valid": [
@@ -232,7 +225,15 @@
       {"args": "none", "ignoreRestSiblings": true}
     ],
     "no-useless-constructor": "off",
-    "@typescript-eslint/no-useless-constructor": "warn"
+    "@typescript-eslint/no-useless-constructor": "warn",
+    "@typescript-eslint/no-unused-expressions": [
+      "error",
+      {
+        "allowShortCircuit": true,
+        "allowTernary": true,
+        "allowTaggedTemplates": true
+      }
+    ]
   },
   "env": {
     "browser": true,

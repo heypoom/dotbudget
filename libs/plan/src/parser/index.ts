@@ -3,9 +3,9 @@ import {parseBudgets} from './budget'
 import {parseInvestments} from './investment'
 import {parseBudgetCategory} from './budget-plan-category'
 
-import {FinancialPlan} from '..'
+import {PlanBlueprint} from '..'
 
-export function parseFinancialPlan(text: string): FinancialPlan {
+export function parseFinancialPlan(text: string): PlanBlueprint {
   const plan = parsePlans(text) //?
   const budget = parseBudgets(text) //?
   const investment = parseInvestments(text) //?
