@@ -1,0 +1,31 @@
+jars:
+  partitions:
+    necessity: 25%
+    security: 200000
+    education: 0%
+    lifestyle: 10%
+    dream: 5%
+  categories:
+    necessity: rent transit food
+    lifestyle: travel
+
+investment:
+  Gold: 10%
+  Thai Market: 10%
+  Cash: 20%
+  Dividend Stocks: 20%
+  Global Market: 40%
+
+allocations:
+  condo:
+    rent: monthly rent 6000
+    common fee: yearly rent 15000
+    water: flexible monthly 500
+  transit:
+    electricity: flexible monthly 2500
+    motorcycle: flexible daily transit (10 * 2)
+    bts: monthly transit (950 + 500)
+  food:
+    dining: flexible daily 200
+    snacks: flexible daily 200
+    cooking: flexible monthly 8000

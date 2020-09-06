@@ -36,7 +36,7 @@ export function TextEditor(props: TextEditorProps) {
     <ControlledEditor
       value={props.value}
       height="100vh"
-      language="javascript"
+      language="yaml"
       editorDidMount={handleMount}
       onChange={handleChange}
       theme="dark"
