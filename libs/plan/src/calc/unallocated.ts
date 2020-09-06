@@ -1,15 +1,15 @@
-import {PlanAllocations} from '@dotbudget/plan'
+import {Jars} from '@dotbudget/plan'
 import {jars} from '../constants'
-import {Jars} from '../@types'
+import {Jar} from '../@types'
 
 export function calculateUnallocated(
-  allocations: PlanAllocations,
-  planAllocations: PlanAllocations
-): PlanAllocations {
-  const unallocated: PlanAllocations = {}
+  allocations: Jars,
+  planAllocations: Jars
+): Jars {
+  const unallocated: Jars = {}
 
   for (const type in planAllocations) {
-    const category = type as Jars
+    const category = type as Jar
     if (!jars.includes(category)) continue
 
     const max = allocations[category] ?? 0

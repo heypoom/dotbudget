@@ -1,12 +1,12 @@
-import {Plan, PlanAllocations} from '@dotbudget/plan'
+import {Plan, Jars} from '@dotbudget/plan'
 
 import {sum} from '../utils'
 
 export function getPlanAllocations(
   plans: Plan[],
   totalBudget: number
-): PlanAllocations {
-  const allocations: PlanAllocations = {}
+): Jars {
+  const allocations: Jars = {}
   let remaining = totalBudget
 
   for (const plan of plans) {

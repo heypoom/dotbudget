@@ -3,12 +3,12 @@ import {getAllocations} from './allocations'
 import {calculateUnallocated} from './unallocated'
 import {calculateInvestmentPlan} from './investment'
 
-import {PlanBlueprint, PlanAllocations, Budget} from '../@types'
+import {PlanBlueprint, Jars, Budget} from '../@types'
 
 export interface CalculatedPlan {
-  plans: PlanAllocations
+  plans: Jars
   allocations: Record<string, number>
-  unallocated: PlanAllocations
+  unallocated: Jars
   breakdown: Record<string, number>
   investmentPlan: Record<string, number>
   monthlyBudgets: Budget[]

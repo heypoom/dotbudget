@@ -1,5 +1,9 @@
 import * as YAML from 'yaml'
 
-export function parseFinancialPlan(yml: string) {
-  const data = YAML.parse(yml)
+import {BlueprintInputSchema, PlanBlueprint} from '../@types'
+
+export function parsePlanBlueprint(yml: string): PlanBlueprint {
+  const data: BlueprintInputSchema = YAML.parse(yml)
+
+  return data
 }

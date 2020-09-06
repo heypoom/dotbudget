@@ -18,16 +18,16 @@ investments:
 budgets:
   condo:
     jar: necessity
-    rent: monthly rent 6000
-    common fee: yearly rent 15000
-    water: flexible monthly 500
+    rent: fixed monthly rent 6000
+    common fee: fixed yearly rent 15000
+    water: monthly 500
   transit:
     jar: necessity
-    electricity: flexible monthly 2500
-    motorcycle: flexible daily transit (10 * 2)
+    electricity: monthly 2500
+    motorcycle: daily transit (10 * 2)
     bts: monthly transit (950 + 500)
   food:
     jar: necessity
-    dining: flexible daily 200
-    snacks: flexible daily 200
-    cooking: flexible monthly 8000
+    dining: daily 200
+    snacks: daily 200
+    cooking: monthly 8000

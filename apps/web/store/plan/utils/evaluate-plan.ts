@@ -1,7 +1,7 @@
 import {
   PlanBlueprint,
   CalculatedPlan,
-  parseFinancialPlan,
+  parsePlanBlueprint,
   calculateFinancialPlan,
 } from '@dotbudget/plan'
 
@@ -12,7 +12,7 @@ interface EvaluatedPlan {
 }
 
 export function evaluatePlanSource(source: string): EvaluatedPlan {
-  const blueprint = parseFinancialPlan(source)
+  const blueprint = parsePlanBlueprint(source)
   const data = calculateFinancialPlan(blueprint, 130000)
 
   return {blueprint, data, source}
