@@ -1,5 +1,9 @@
 {
   "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "strict": true,
+    "strictNullChecks": true
+  },
   "references": [
     {
       "path": "./tsconfig.lib.json"

@@ -1,5 +1,5 @@
 /**
-  Investments define where you'll be investing your money in. (e.g. gold, stocks, bonds)
+  Investments define the percentages in which you'll be investing your money in. (e.g. gold, stocks, bonds)
 
   @example
   investments:
@@ -9,4 +9,4 @@
     Dividend Stocks: 20%
     Global Market: 40%
  */
-export type Investments = Record<string, string>
+export type Investments = Record<string, number>

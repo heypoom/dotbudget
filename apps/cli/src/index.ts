@@ -1,9 +1,8 @@
 import * as fs from 'fs'
 import * as process from 'process'
 
-import {parsePlanBlueprint} from '../../../libs/plan/src'
-
-import {syncFinancialPlan} from '../../../libs/sync/src'
+import {parsePlanBlueprint} from '@dotbudget/plan'
+import {syncFinancialPlan} from '@dotbudget/sync'
 
 const [_, _2, fileName] = process.argv
 

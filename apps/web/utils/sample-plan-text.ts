@@ -1,34 +1,33 @@
-export const SamplePlanText = `
-// Allocations for each category.
-necessity 25%
-security 200000
-education 0%
-lifestyle 10%
-dream 5%
+export const SamplePlanText = `# Jars define how your money is being partitioned.
+jars:
+  necessity: 25%
+  security: 200000
+  education: 0%
+  lifestyle: 10%
+  dream: 5%
 
-// Categorize the budgets
-necessity: rent transit food
-lifestyle: travel
+# Investments define how the rest of your money will be invested.
+investments:
+  Gold: 10%
+  Thai Market: 10%
+  Cash: 20%
+  Dividend Stocks: 20%
+  Global Market: 40%
 
-// Investment strategy
-invest in Gold 10%
-invest in Thai Market 10%
-invest in Cash 20%
-invest in Dividend Stocks 20%
-invest in Global Market 40%
-
-// Rent
-01 yearly rent 15000 Common Fee
-02 monthly rent 6000 Rent
-03 flexible monthly rent 500 Water
-04 flexible monthly rent 2500 Electricity
-
-// Transit
-05 flexible daily transit (10 * 2) Motorcycle
-06 monthly transit (950 + 500) BTS
-
-// Food
-07 flexible daily food 200 Dining
-08 flexible daily food 200 Snacks
-09 flexible monthly food 8000 Cooking
-`
+# Budgets define how much budget you've allocated to each spending category.
+budgets:
+  condo:
+    jar: necessity
+    rent: fixed monthly 6000
+    common fee: fixed yearly 15000
+    water: monthly 500
+  transit:
+    jar: necessity
+    electricity: monthly 2500
+    motorcycle: daily transit (10 * 2)
+    bts: monthly transit (950 + 500)
+  food:
+    jar: necessity
+    dining: daily 200
+    snacks: daily 200
+    cooking: monthly 8000`

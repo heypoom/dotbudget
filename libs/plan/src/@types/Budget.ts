@@ -1,3 +1,5 @@
+import {Jar} from '.'
+
 import {frequencies} from './constants'
 
 /**
@@ -7,8 +9,8 @@ import {frequencies} from './constants'
   budgets:
     condo:
       jar: necessity
-      rent: fixed monthly rent 6000
-      common fee: fixed yearly rent 15000
+      rent: fixed monthly 6000
+      common fee: fixed yearly 15000
       water: monthly 500
     transit:
       jar: necessity
