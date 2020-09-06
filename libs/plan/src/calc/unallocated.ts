@@ -1,5 +1,5 @@
 import {Jars} from '@dotbudget/plan'
-import {jars} from '../constants'
+import {jars} from '../@types/constants'
 import {Jar} from '../@types'
 
 export function calculateUnallocated(
