@@ -10,7 +10,7 @@ export function BudgetCardTitle(props: BudgetCardProps) {
   const isOverBudget = spent > amount
 
   const className = c(
-    'rounded-tl-lg rounded-tr-lg px-5 py-1 text-white text-center md:text-left shadow-md z-10',
+    'flex rounded-tl-lg rounded-tr-lg px-5 py-1 text-white text-center md:text-left shadow-md z-10 h-8 overflow-hidden',
     toBackground(isOverBudget)
   )
 
@@ -26,9 +26,9 @@ export function BudgetCardTitle(props: BudgetCardProps) {
 
   return (
     <div className={className}>
-      <span>{name}</span>
-
-      <span className="hidden md:inline">&nbsp;({category})</span>
+      <span>
+        {name} <span className="hidden md:inline">({category})</span>
+      </span>
     </div>
   )
 }
