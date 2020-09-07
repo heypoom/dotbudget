@@ -2,11 +2,13 @@ import {Plan, Jars} from '@dotbudget/plan'
 
 import {sum} from '../utils'
 
-export function getPlanAllocations(
+import {JarAllocations} from '../@types/CalculatedPlan'
+
+export function getJarAllocations(
   plans: Plan[],
   totalBudget: number
-): Jars {
-  const allocations: Jars = {}
+): JarAllocations {
+  const allocations: JarAllocations = {}
   let remaining = totalBudget
 
   for (const plan of plans) {
