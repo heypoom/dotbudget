@@ -17,8 +17,7 @@ interface TabProps {
 
 const Tab: React.FC<TabProps> = ({children, onClick}) => (
   <button
-    className="p-2 w-full text-white text-center cursor-pointer border-none rounded-none z-10"
-    style={{background: '#202124'}}
+    className="p-2 w-full text-white text-center cursor-pointer border-none rounded-none z-10 bg-darkgrey"
     onClick={onClick}
   >
     {children}

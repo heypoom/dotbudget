@@ -62,7 +62,7 @@ const BudgetGrid = () => {
 
 export const Dashboard = () => {
   return (
-    <main className="bg-gray-200 h-screen">
+    <main className="bg-dark h-screen">
       <div>
         <CommandPalette />
 

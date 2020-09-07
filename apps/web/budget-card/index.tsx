@@ -16,11 +16,6 @@ export function BudgetCard(props: BudgetCardProps) {
 
   const {spent = 0, amount = 0, isFixed, icon, category, name} = props
 
-  const containerClass = c(
-    'relative mx-auto flex flex-col rounded-lg shadow-xl w-full bg-white',
-    isFixed && 'opacity-75'
-  )
-
   const isOverBudget = spent > amount
   const textColor = toTextColor(isOverBudget)
 
@@ -40,7 +35,13 @@ export function BudgetCard(props: BudgetCardProps) {
   }
 
   return (
-    <div className={containerClass} onClick={onCardClicked}>
+    <div
+      className={c(
+        'relative mx-auto flex flex-col rounded-lg shadow-xl w-full bg-dark',
+        isFixed && 'opacity-75'
+      )}
+      onClick={onCardClicked}
+    >
       <BudgetCardTitle {...props} />
 
       <div className="p-4 px-6">
