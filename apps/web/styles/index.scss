@@ -1,3 +1,41 @@
+@import '~noty/src/noty.scss';
+@import '~noty/src/themes/nest.scss';
+
+@import './fonts.scss';
+
 body {
   margin: 0;
+  font-family: JetBrains Mono, monospace;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.bg-gradient-pink {
+  background: linear-gradient(to right, #bc4e9c, #f80759);
+}
+
+.bg-gradient-red {
+  background: linear-gradient(to right, #ff416c, #ff4b2b);
+}
+
+.shadow-md-green {
+  box-shadow: 0 4px 6px -1px rgba(72, 187, 120, 0.4),
+    0 2px 4px -1px rgba(72, 187, 120, 0.2);
+}
+
+.shadow-md-pink {
+  box-shadow: 0 4px 6px -1px rgba(255, 65, 108, 0.3),
+    0 2px 4px -1px rgba(255, 65, 108, 0.1);
+}
+
+.text-gradient {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

@@ -14,7 +14,7 @@ import {toTextColor} from '../ui/colors'
 
 const ExpandableCard = styled.div`
   ${props =>
-    props.expand &&
+    expand &&
     css`
       /* position: fixed; */
       width: calc(100vw - 45px);
@@ -28,33 +28,29 @@ const ExpandableCard = styled.div`
 export function BudgetCard(props: BudgetCardProps) {
   const [isExpanding, setExpanding] = useState(false)
 
+  const {spent = 0, amount = 0, isFixed, icon} = props
+
   const containerClass = c(
     'relative mx-auto flex flex-col rounded-lg shadow-xl w-full bg-white',
-    !props.isFlexible && 'opacity-75'
+    isFixed && 'opacity-75'
   )
 
-  const isOverBudget = props.spent > props.allocated
+  const isOverBudget = spent > amount
   const textColor = toTextColor(isOverBudget)
 
   const spendingClass = c('text-xl sm:text-2xl pt-2 font-medium', textColor)
-  const iconClass = c('far', 'fa-' + props.icon, textColor)
+  const iconClass = c('far', 'fa-' + icon, textColor)
 
   function onCardClicked() {
     if (!isExpanding) setExpanding(true)
   }
 
   return (
-    <ExpandableCard
-      className={containerClass}
-      expand={isExpanding}
-      onClick={onCardClicked}
-    >
+    <div className={containerClass} onClick={onCardClicked}>
       <BudgetCardTitle {...props} />
 
       <div className="p-4 px-6">
-        <div className="text-4xl">
-          {props.icon && <i className={iconClass} />}
-        </div>
+        <div className="text-4xl">{icon && <i className={iconClass} />}</div>
 
         <div className={spendingClass}>
           <BudgetDisplay {...props} />
@@ -70,6 +66,6 @@ export function BudgetCard(props: BudgetCardProps) {
       {!isExpanding && <Ink opacity={0.05} />}
 
       <BudgetCardPercent {...props} />
-    </ExpandableCard>
+    </div>
   )
 }

@@ -3,9 +3,11 @@ import React from 'react'
 import {BudgetCardProps} from './types'
 
 export function BudgetDisplay(props: BudgetCardProps) {
-  if (props.isFlexible) {
-    const remaining = (props.allocated || 0) - (props.spent || 0)
-    const isOverBudget = props.spent > props.allocated
+  const {spent = 0, amount = 0, isFixed} = props
+
+  if (!isFixed) {
+    const remaining = amount - spent
+    const isOverBudget = spent > amount
 
     return (
       <span>
@@ -18,7 +20,7 @@ export function BudgetDisplay(props: BudgetCardProps) {
 
   return (
     <span>
-      {props.allocated} <small className="font-normal">fixed</small>
+      {props.amount} <small className="font-normal">fixed</small>
     </span>
   )
 }
