@@ -3,12 +3,12 @@ import React, {useState} from 'react'
 import {PlanEditor} from './PlanEditor'
 import {SpendingEditor} from './SpendingEditor'
 
-const panels = ['plan', 'spending'] as const
+const panels = ['plan', 'spend'] as const
 type EditorPanels = typeof panels[number]
 
 const EditorComponents: Record<EditorPanels, React.FC> = {
   plan: PlanEditor,
-  spending: SpendingEditor,
+  spend: SpendingEditor,
 }
 
 interface TabProps {
