@@ -11,4 +11,6 @@ export interface PlanEvent {
     category: string
     name: string
   }
+
+  'plan/deselect': undefined
 }

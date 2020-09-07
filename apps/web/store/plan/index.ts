@@ -51,4 +51,6 @@ export const PlanModule: StoreModule = store => {
       plan: {...state.plan, selected: isSame ? null : event},
     }
   })
+
+  store.on('plan/deselect', state => ({plan: {...state.plan, selected: null}}))
 }
