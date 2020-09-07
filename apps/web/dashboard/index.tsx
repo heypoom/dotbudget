@@ -49,8 +49,6 @@ const BudgetGrid = () => {
     return transformBudget(budgets, spending?.data)
   }, [budgets, spending])
 
-  console.log('Data:', data)
-
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 md:gap-5 p-6">
       {data.map(budget => (
