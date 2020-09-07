@@ -11,5 +11,11 @@ import {jars} from './constants'
     lifestyle: 10%
     dream: 5%
  */
-export type Jars = Record<Jar, number>
+export type Jars = Record<Jar, JarPartition>
 export type Jar = typeof jars[number]
+
+/**
+ * How do we want to allocate the money for this jar?
+ * We can either allocate as percentage OR as a fixed amount.
+ **/
+export type JarPartition = {percent: number} | {amount: number}

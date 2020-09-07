@@ -3,11 +3,11 @@ import * as fs from 'fs'
 import {parsePlanBlueprint, calculateFinancialPlan} from '../src'
 
 describe('Financial Planner', () => {
-  const SampleFile = fs.readFileSync('./libs/plan/tests/sample.budget', 'utf-8')
+  const SampleFile = fs.readFileSync('./plan.yml', 'utf-8')
 
   it('should be able to parse financial plan', () => {
     const plan = parsePlanBlueprint(SampleFile)
-    plan
+    plan //?
 
     expect(plan.budget.length).toBe(9)
     expect(plan.plan.length).toBe(5)
