@@ -7,6 +7,7 @@ module.exports = {
         green: '#2ecc71',
         red: '#fe4b2e',
         dark: '#282a37',
+        darker: '#21222d',
         darkgrey: '#202124',
       },
       fontFamily: {

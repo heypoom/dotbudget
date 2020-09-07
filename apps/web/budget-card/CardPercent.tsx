@@ -1,7 +1,7 @@
 import React from 'react'
 import c from 'classnames'
 
-import {toBackground} from '../ui/colors'
+import {toBackground, toTextColor} from '../ui/colors'
 
 import {BudgetCardProps} from './types'
 
