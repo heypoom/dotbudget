@@ -2641,6 +2641,11 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
+"@storeon/localstorage@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@storeon/localstorage/-/localstorage-1.2.0.tgz#0ffcc5c0e270c908725bb337ff02e9e0877c6c84"
+  integrity sha512-GcUG67wzYEZmDZoG1gxSjGTaN9wk2P4FPffqkcHoUk/As4OawpQ91f5Z0pMaAG4o8GGe9cmoT7+dn3SqUPqUNg==
+
 "@svgr/babel-plugin-add-jsx-attribute@^4.2.0":
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/@svgr/babel-plugin-add-jsx-attribute/-/babel-plugin-add-jsx-attribute-4.2.0.tgz#dadcb6218503532d6884b210e7f3c502caaa44b1"
