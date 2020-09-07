@@ -45,9 +45,15 @@ export function BudgetCard(props: BudgetCardProps) {
   const iconClass = c('far', 'fa-' + icon, textColor)
 
   function onCardClicked() {
-    // dispatch('spending/log', {category, name, amount: amount + 10})
+    const a = prompt('Log Spending [l] or Reallocate [r]?')?.trim()
 
-    dispatch('plan/reallocate', {category, name, amount: amount + 20})
+    if (a === 'l') {
+      const amount = prompt('how much?')
+      dispatch('spending/log', {category, name, amount: Number(amount)})
+    } else if (a === 'r') {
+      const amount = prompt('how much?')
+      dispatch('plan/reallocate', {category, name, amount: Number(amount)})
+    }
   }
 
   return (

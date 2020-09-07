@@ -4,7 +4,11 @@ import {mapValues, groupBy, merge} from 'lodash'
 import {PlanBlueprint, BlueprintInputSchema, Budget} from '@dotbudget/plan'
 
 const createBudgetMetadata = (budget: Budget): string =>
-  [budget.isFixed ? 'fixed' : '', budget.frequency, budget.amount]
+  [
+    budget.isFixed ? 'fixed' : '',
+    budget.frequency,
+    budget.expression ?? budget.amount,
+  ]
     .join(' ')
     .trim()
 

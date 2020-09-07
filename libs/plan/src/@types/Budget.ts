@@ -36,6 +36,9 @@ export interface Budget {
 
   /** How much money have we allocated to this item? */
   amount: number
+
+  /** The amount expression that can be evaluated at runtime. */
+  expression?: string
 }
 
 /** How often are we going to spend money on this item? (e.g. daily, monthly, yearly) */

@@ -13,3 +13,4 @@ export const createLinesParser = <T>(transform: (text: string) => T) => (
 export * from './date'
 export * from './empty-jar'
 export * from './evaluate-plan'
+export * from './safe-eval'

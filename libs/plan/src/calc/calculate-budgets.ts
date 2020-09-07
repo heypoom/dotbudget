@@ -1,4 +1,5 @@
 import {Budget} from '../@types'
+import {getExpression} from '../utils'
 
 export function calculateMonthlyBudget(budget: Budget): number {
   const {frequency, amount} = budget
@@ -15,4 +16,5 @@ export const calculateMonthlyBudgets = (budgets: Budget[]): Budget[] =>
   budgets.map(budget => ({
     ...budget,
     amount: calculateMonthlyBudget(budget),
+    expression: getExpression(budget),
   }))
