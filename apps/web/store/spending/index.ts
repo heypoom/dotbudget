@@ -3,6 +3,7 @@ import {parseSpending} from '@dotbudget/plan'
 import {StoreModule} from '../@types'
 
 import {SampleSpendingText} from '../../utils/sample-spending-text'
+import {date} from 'libs/plan/src/utils/date'
 
 export const SpendingModule: StoreModule = store => {
   store.on('@init', () => {
@@ -21,6 +22,14 @@ export const SpendingModule: StoreModule = store => {
       console.warn('Spending Log Parse Error:', {err})
 
       return state
+    }
+  })
+
+  store.on('spending/log', (state, event) => {
+    const data = [...state.spending.data, {...event, date: date()}]
+
+    return {
+      spending: {...state.spending, data},
     }
   })
 }
