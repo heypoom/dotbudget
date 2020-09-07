@@ -17,7 +17,9 @@ export function BudgetCardTitle(props: BudgetCardProps) {
   if (isOverBudget) {
     return (
       <div className={className}>
-        <i className="fas fa-exclamation-triangle" />
+        <div>
+          <i className="fas fa-exclamation-triangle" />
+        </div>
 
         <span>&nbsp;{name}</span>
       </div>

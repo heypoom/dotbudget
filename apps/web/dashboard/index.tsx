@@ -3,13 +3,10 @@ import {sortBy} from 'lodash'
 
 import {Budget, Spending, getTotalSpending} from '@dotbudget/plan'
 
-import {BudgetCard} from '../budget-card'
-import {CurrentBudget} from '../budget-card/types'
-
+import {Editor} from '../editor'
 import {useStore} from '../store'
 
-import {PlanEditor} from '../editor/PlanEditor'
-import {SpendingEditor} from '../editor/SpendingEditor'
+import {BudgetCard, CurrentBudget} from '../budget-card'
 
 export const iconMap: Record<string, string> = {
   Dining: 'utensils-alt',
@@ -32,7 +29,7 @@ function transformBudget(
   const budgets = data.map(b => ({
     ...b,
     icon: iconMap[b.name] || iconMap[b.category] || 'money-bill-wave',
-    spent: getTotalSpending(spending, b),
+    spent: getTotalSpending(spending, b, 'month', new Date()),
   }))
 
   const fixedGoesLast = sortBy(budgets, o => o.isFixed)
@@ -46,14 +43,12 @@ const BudgetGrid = () => {
   const {budgets} = plan?.data
 
   const {spending} = useStore('spending')
-  console.log('Spending:', spending?.data)
-
-  // console.log('Monthly Plan', plan?.data)
-  // console.table(budgets)
 
   const data: CurrentBudget[] = useMemo(() => {
     return transformBudget(budgets, spending?.data)
   }, [budgets, spending])
+
+  console.log('Data:', data)
 
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 md:gap-5 p-6">
@@ -74,8 +69,7 @@ export const Dashboard = () => {
           </div>
 
           <div className="w-1/2">
-            {/* <PlanEditor /> */}
-            <SpendingEditor />
+            <Editor />
           </div>
         </div>
       </div>

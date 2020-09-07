@@ -11,6 +11,7 @@ import {BudgetCardPercent} from './CardPercent'
 
 import {BudgetCardProps} from './types'
 import {toTextColor} from '../ui/colors'
+import {divide} from 'lodash'
 
 const ExpandableCard = styled.div`
   ${props =>
@@ -50,7 +51,13 @@ export function BudgetCard(props: BudgetCardProps) {
       <BudgetCardTitle {...props} />
 
       <div className="p-4 px-6">
-        <div className="text-4xl">{icon && <i className={iconClass} />}</div>
+        <div className="text-4xl">
+          {icon && (
+            <div>
+              <i className={iconClass} />
+            </div>
+          )}
+        </div>
 
         <div className={spendingClass}>
           <BudgetDisplay {...props} />
@@ -69,3 +76,5 @@ export function BudgetCard(props: BudgetCardProps) {
     </div>
   )
 }
+
+export * from './types'
