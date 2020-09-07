@@ -1,7 +1,8 @@
-import {evaluatePlanSource} from './utils/evaluate-plan'
+import {evaluatePlanSource} from '@dotbudget/plan'
+
+import {StoreModule} from '../@types'
 
 import {SamplePlanText} from '../../utils/sample-plan-text'
-import {StoreModule} from '../@types'
 
 export const PlanModule: StoreModule = store => {
   store.on('@init', () => {

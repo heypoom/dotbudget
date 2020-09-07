@@ -1,8 +1,6 @@
-import {parseSpending, date} from '@dotbudget/plan'
+import {parseSpending, date, spendingToYaml} from '@dotbudget/plan'
 
 import {StoreModule} from '../@types'
-
-import {spendingToYaml} from './utils/spending-to-yml'
 import {SampleSpendingText} from '../../utils/sample-spending-text'
 
 export const SpendingModule: StoreModule = store => {
