@@ -31,7 +31,7 @@ export function Editor() {
   if (!View) return null
 
   return (
-    <div>
+    <div style={{background: '#202124'}}>
       <div className="flex">
         {panels.map(p => (
           <Tab onClick={() => setEditor(p)} key={p}>
