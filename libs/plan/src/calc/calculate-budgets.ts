@@ -5,7 +5,7 @@ export function calculateMonthlyBudget(budget: Budget): number {
 
   if (frequency === 'daily') return amount * 30
   if (frequency === 'weekly') return amount * 4
-  if (frequency === 'yearly') return amount / 12
+  if (frequency === 'yearly') return Math.round(amount / 12)
 
   return amount
 }
