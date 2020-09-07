@@ -1,35 +1,28 @@
 import React, {useMemo} from 'react'
 import {sortBy} from 'lodash'
 
-import {Budget, Spending, getTotalSpending} from '@dotbudget/plan'
+import {Budget, Spending, getTotalSpending, keyOf} from '@dotbudget/plan'
 
-import {Editor} from '../editor'
 import {useStore} from '../store'
 
-import {BudgetCard, CurrentBudget} from '../budget-card'
+import {Editor} from '../editor'
 import {CommandPalette} from '../command-palette'
+import {BudgetCard, CurrentBudget} from '../budget-card'
 
-export const iconMap: Record<string, string> = {
-  Dining: 'utensils-alt',
-  Snacks: 'ice-cream',
-  Motorcycle: 'motorcycle',
-  BTS: 'subway',
-  Water: 'faucet-drip',
-  Electricity: 'bolt',
-  Cooking: 'oven',
-
-  food: 'utensils-alt',
-  rent: 'home',
-  transit: 'car',
-}
+const getBudgetIcon = (b: Budget, iconMap: Record<string, string> = {}) =>
+  iconMap[keyOf(b)] ||
+  iconMap[b.name] ||
+  iconMap[b.category] ||
+  'money-bill-wave'
 
 function transformBudget(
   data: Budget[],
-  spending: Spending[]
+  spending: Spending[],
+  iconMap: Record<string, string> = {}
 ): CurrentBudget[] {
   const budgets = data.map(b => ({
     ...b,
-    icon: iconMap[b.name] || iconMap[b.category] || 'money-bill-wave',
+    icon: getBudgetIcon(b, iconMap),
     spent: getTotalSpending(spending, b, 'month', new Date()),
   }))
 
@@ -39,17 +32,15 @@ function transformBudget(
   return overGoesFirst
 }
 
-const keyOf = (budget: Budget) => budget.name + '/' + budget.category
-
 const BudgetGrid = () => {
   const {plan} = useStore('plan')
   const {budgets} = plan?.data
 
   const {spending} = useStore('spending')
 
-  const data: CurrentBudget[] = useMemo(() => {
-    return transformBudget(budgets, spending?.data)
-  }, [budgets, spending])
+  const data = useMemo(() => {
+    return transformBudget(budgets, spending.data, plan.iconMap)
+  }, [budgets, spending.data, plan.iconMap])
 
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 md:gap-5 p-6">

@@ -9,5 +9,6 @@ export interface PlanState {
 
     budgetable: number
     selected: BudgetSelection | null
+    iconMap: Record<string, string>
   }
 }

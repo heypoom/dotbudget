@@ -10,4 +10,9 @@ export interface PlanEvent {
   'plan/select': BudgetSelection
   'plan/toggle': BudgetSelection
   'plan/deselect': undefined
+
+  'plan/setIcon': {
+    key: string
+    icon: string
+  }
 }

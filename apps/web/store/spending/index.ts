@@ -1,8 +1,8 @@
 import {parseSpending, date, serializeSpending} from '@dotbudget/plan'
 
-import {StoreModule} from '../@types'
+import {SampleSpendingText} from './data/sample-spending-text'
 
-import {SampleSpendingText} from '../../utils/sample-spending-text'
+import {StoreModule} from '../@types'
 
 export const SpendingModule: StoreModule = store => {
   store.on('@init', () => {

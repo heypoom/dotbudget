@@ -2,14 +2,17 @@ import {evaluatePlanSource, evaluatePlan, withAmount} from '@dotbudget/plan'
 
 import {StoreModule} from '../@types'
 
-import {SamplePlanText} from '../../utils/sample-plan-text'
+import {defaultIconMap} from './data/iconMap'
+import {SamplePlanText} from './data/sample-plan-text'
 
 export const PlanModule: StoreModule = store => {
   store.on('@init', () => {
     const budgetable = 200000
     const plan = evaluatePlanSource(SamplePlanText, budgetable)
 
-    return {plan: {...plan, budgetable, selected: null}}
+    return {
+      plan: {...plan, budgetable, selected: null, iconMap: defaultIconMap},
+    }
   })
 
   store.on('plan/setPlanSource', (state, event) => {
@@ -56,4 +59,15 @@ export const PlanModule: StoreModule = store => {
   }))
 
   store.on('plan/deselect', state => ({plan: {...state.plan, selected: null}}))
+
+  store.on('plan/setIcon', (state, event) => {
+    console.log(`Set icon> ${event.key} = ${event.icon}`, {state})
+
+    return {
+      plan: {
+        ...state.plan,
+        iconMap: {...state.plan.iconMap, [event.key]: event.icon},
+      },
+    }
+  })
 }
