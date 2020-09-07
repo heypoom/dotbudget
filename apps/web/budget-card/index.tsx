@@ -12,6 +12,7 @@ import {BudgetCardPercent} from './CardPercent'
 import {BudgetCardProps} from './types'
 import {toTextColor} from '../ui/colors'
 import {divide} from 'lodash'
+import {useStore} from '../store'
 
 const ExpandableCard = styled.div`
   ${props =>
@@ -28,8 +29,9 @@ const ExpandableCard = styled.div`
 
 export function BudgetCard(props: BudgetCardProps) {
   const [isExpanding, setExpanding] = useState(false)
+  const {dispatch} = useStore('spending')
 
-  const {spent = 0, amount = 0, isFixed, icon} = props
+  const {spent = 0, amount = 0, isFixed, icon, category, name} = props
 
   const containerClass = c(
     'relative mx-auto flex flex-col rounded-lg shadow-xl w-full bg-white',
@@ -43,7 +45,7 @@ export function BudgetCard(props: BudgetCardProps) {
   const iconClass = c('far', 'fa-' + icon, textColor)
 
   function onCardClicked() {
-    if (!isExpanding) setExpanding(true)
+    dispatch('spending/log', {category, name, amount: 50})
   }
 
   return (
