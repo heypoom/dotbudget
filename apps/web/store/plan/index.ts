@@ -36,6 +36,7 @@ export const PlanModule: StoreModule = store => {
     )
 
     const plan = rebuildPlan({...blueprint, budgets}, budgetable)
+    console.log('Plan Source:\n', plan.source)
 
     return {plan: {...state.plan, ...plan}}
   })

@@ -1,9 +1,9 @@
 import {
-  PlanBlueprint,
+  Serialize,
   MonthlyPlan,
+  PlanBlueprint,
   parsePlanBlueprint,
   calculateMonthlyPlan,
-  planBlueprintToYaml,
 } from '@dotbudget/plan'
 
 interface EvaluatedPlan {
@@ -26,7 +26,7 @@ export function rebuildPlan(
   blueprint: PlanBlueprint,
   total: number
 ): EvaluatedPlan {
-  const source = planBlueprintToYaml(blueprint)
+  const source = Serialize.plan(blueprint)
   const data = calculateMonthlyPlan(blueprint, total)
 
   return {blueprint, data, source}

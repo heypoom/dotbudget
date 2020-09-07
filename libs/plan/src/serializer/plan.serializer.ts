@@ -40,5 +40,5 @@ export function planBlueprintToYamlSchema(
   return {budgets, jars, investments}
 }
 
-export const planBlueprintToYaml = (blueprint: PlanBlueprint): string =>
+export const serializePlan = (blueprint: PlanBlueprint): string =>
   YAML.stringify(planBlueprintToYamlSchema(blueprint))

@@ -15,5 +15,5 @@ export function spendingToYamlSchema(input: Spending[]): SpendingInputSchema {
   return {spending}
 }
 
-export const spendingToYaml = (input: Spending[]): string =>
+export const serializeSpending = (input: Spending[]): string =>
   YAML.stringify(spendingToYamlSchema(input))

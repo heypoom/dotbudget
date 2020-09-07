@@ -1,6 +1,7 @@
-import {parseSpending, date, spendingToYaml} from '@dotbudget/plan'
+import {parseSpending, date, Serialize} from '@dotbudget/plan'
 
 import {StoreModule} from '../@types'
+
 import {SampleSpendingText} from '../../utils/sample-spending-text'
 
 export const SpendingModule: StoreModule = store => {
@@ -25,7 +26,7 @@ export const SpendingModule: StoreModule = store => {
 
   store.on('spending/log', (state, event) => {
     const data = [...state.spending.data, {...event, date: date()}]
-    const source = spendingToYaml(data)
+    const source = Serialize.spending(data)
 
     return {
       spending: {...state.spending, data, source},
