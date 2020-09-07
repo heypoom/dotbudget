@@ -3,14 +3,13 @@ import {evaluatePlanSource, rebuildPlan} from '@dotbudget/plan'
 import {StoreModule} from '../@types'
 
 import {SamplePlanText} from '../../utils/sample-plan-text'
-import {Stream} from 'stream'
 
 export const PlanModule: StoreModule = store => {
   store.on('@init', () => {
     const budgetable = 200000
     const plan = evaluatePlanSource(SamplePlanText, budgetable)
 
-    return {plan: {...plan, budgetable}}
+    return {plan: {...plan, budgetable, selected: null}}
   })
 
   store.on('plan/setPlanSource', (state, event) => {
