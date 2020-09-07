@@ -13,14 +13,17 @@ export function CommandPalette() {
   const {budgets} = plan?.blueprint
 
   function onCommand(text: string) {
-    const [_cmd, a1] = text.trim().split(' ')
     const [completion] = completions
+    const {category, name} = completion
 
-    dispatch('spending/log', {
-      category: completion.category,
-      name: completion.name,
-      amount: Number(a1),
-    })
+    const [_cmd, a1, a2] = text.trim().split(' ')
+
+    if (a1 === 'p') {
+      dispatch('plan/reallocate', {category, name, amount: Number(a2)})
+      return
+    }
+
+    dispatch('spending/log', {category, name, amount: Number(a1)})
 
     setText('')
   }
