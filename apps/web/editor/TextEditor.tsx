@@ -18,7 +18,8 @@ interface TextEditorProps {
 }
 
 const options: EditorAPI.IEditorOptions = {
-  fontSize: 18,
+  fontSize: 20,
+  fontWeight: 'JetBrains Mono',
 }
 
 export function TextEditor(props: TextEditorProps) {
