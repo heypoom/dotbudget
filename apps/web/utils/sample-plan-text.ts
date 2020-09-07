@@ -21,9 +21,9 @@ budgets:
     rent: fixed monthly 6000
     common fee: fixed yearly 15000
     water: monthly 500
+    electricity: monthly 2500
   transit:
     jar: necessity
-    electricity: monthly 2500
     motorcycle: daily (10 * 2)
     bts: monthly (950 + 500)
   food:

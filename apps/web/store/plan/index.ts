@@ -1,15 +1,9 @@
-import {StoreonModule} from 'storeon'
-
-import {PlanState} from './types/PlanState'
-import {PlanEvent} from './types/PlanEvent'
-
 import {evaluatePlanSource} from './utils/evaluate-plan'
 
 import {SamplePlanText} from '../../utils/sample-plan-text'
+import {StoreModule} from '../@types'
 
-export type PlanStore = StoreonModule<PlanState, PlanEvent>
-
-export const PlanModule: PlanStore = store => {
+export const PlanModule: StoreModule = store => {
   store.on('@init', () => {
     const plan = evaluatePlanSource(SamplePlanText)
 

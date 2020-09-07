@@ -32,3 +32,5 @@ export function calculateMonthlyPlan(
     unbudgeted,
   }
 }
+
+export * from './spending'

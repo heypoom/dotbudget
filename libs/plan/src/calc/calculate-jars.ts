@@ -1,4 +1,4 @@
-import {mapValues, sum, values} from 'lodash'
+import {mapValues} from 'lodash'
 
 import {Jars, JarAllocations, JarPartition} from '../@types'
 

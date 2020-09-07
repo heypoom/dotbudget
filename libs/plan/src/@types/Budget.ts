@@ -12,9 +12,9 @@ import {frequencies} from './constants'
       rent: fixed monthly 6000
       common fee: fixed yearly 15000
       water: monthly 500
+      electricity: monthly 2500
     transit:
       jar: necessity
-      electricity: monthly 2500
       motorcycle: daily transit (10 * 2)
       bts: monthly transit (950 + 500)
  */
