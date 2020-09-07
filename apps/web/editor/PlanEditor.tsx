@@ -9,7 +9,7 @@ export function PlanEditor() {
   const {plan, dispatch} = useStore('plan')
 
   const handleChange = (text: string) => dispatch('plan/setPlanSource', text)
-  const debouncedChange = useCallback(debounce(handleChange, 500), [])
+  const debouncedChange = useCallback(debounce(handleChange, 50), [])
 
   return <TextEditor value={plan.source} onChange={debouncedChange} />
 }
