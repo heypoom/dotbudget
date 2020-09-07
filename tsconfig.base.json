@@ -14,8 +14,8 @@
     "module": "esnext",
     "typeRoots": ["node_modules/@types"],
     "lib": ["es2017", "dom"],
-    "skipLibCheck": false,
-    "skipDefaultLibCheck": false,
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
       "@dotbudget/plan": ["libs/plan/src/index.ts"],
