@@ -7,6 +7,7 @@ import {Editor} from '../editor'
 import {useStore} from '../store'
 
 import {BudgetCard, CurrentBudget} from '../budget-card'
+import {CommandPalette} from '../command-palette'
 
 export const iconMap: Record<string, string> = {
   Dining: 'utensils-alt',
@@ -63,6 +64,8 @@ export const Dashboard = () => {
   return (
     <main className="bg-gray-200 h-screen">
       <div>
+        <CommandPalette />
+
         <div className="flex">
           <div className="w-1/2">
             <BudgetGrid />
