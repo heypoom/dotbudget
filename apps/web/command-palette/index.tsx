@@ -21,12 +21,15 @@ export function CommandPalette() {
   }
 
   return (
-    <div className="fixed z-20" style={{bottom: 60}}>
+    <div
+      className="absolute z-20 flex items-center justify-center w-full"
+      style={{bottom: 85}}
+    >
       <input
         type="text"
         value={text}
         onChange={e => setText(e.target.value)}
-        className="text-3xl px-8 py-2 rounded-full focus:border-transparent outline-none shadow-lg bg-dark text-white"
+        className="text-2xl px-6 py-2 rounded-full focus:border-transparent outline-none shadow-lg bg-dark text-white"
         onKeyPress={e => e.key === 'Enter' && onCommand(text)}
       />
     </div>

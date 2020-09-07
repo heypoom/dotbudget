@@ -64,11 +64,10 @@ export const Dashboard = () => {
   return (
     <main className="bg-darker h-screen">
       <div>
-        <CommandPalette />
-
         <div className="flex">
-          <div className="w-1/2">
+          <div className="w-1/2 relative">
             <BudgetGrid />
+            <CommandPalette />
           </div>
 
           <div className="w-1/2">
