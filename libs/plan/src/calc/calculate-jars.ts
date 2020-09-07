@@ -1,18 +1,25 @@
 import {mapValues, sum, values} from 'lodash'
 
-import {Jars, JarAllocations} from '../@types'
+import {Jars, JarAllocations, JarPartition} from '../@types'
 
-export function calculateJars(jars: Jars, remaining: number): JarAllocations {
+function getMonthlyBudget(p: JarPartition, remaining: number): number {
+  if (p.amount) return p.amount
+  if (p.percent) return Math.round((p.percent / 100) * remaining)
+
+  return 0
+}
+
+export function calculateJars(jars: Jars, total: number): JarAllocations {
+  let remaining = total
+
   // Calculate the monthly allocations for each jars.
-  const allocated: JarAllocations = mapValues(jars, p => {
-    if (p.amount) return p.amount
-    if (p.percent) return p.percent * remaining
+  const allocated: JarAllocations = mapValues(jars, jar => {
+    const budget = getMonthlyBudget(jar, remaining)
+    remaining -= budget
 
-    return 0
+    return budget
   })
 
   // We put the remaining money into investments.
-  const investment = Math.max(remaining - sum(values(allocated)), 0)
-
-  return {...allocated, investment}
+  return {...allocated, investment: remaining}
 }

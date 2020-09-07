@@ -10,6 +10,11 @@ const App = ({Component, pageProps}: AppProps) => {
     <>
       <Head>
         <title>Dotbudget</title>
+
+        <script
+          src="https://kit.fontawesome.com/11f4643241.js"
+          crossOrigin="anonymous"
+        ></script>
       </Head>
 
       <div className="app">

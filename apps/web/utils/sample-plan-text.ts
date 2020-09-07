@@ -1,7 +1,7 @@
 export const SamplePlanText = `# Jars define how your money is being partitioned.
 jars:
   necessity: 25%
-  security: 200000
+  security: 50000
   education: 0%
   lifestyle: 10%
   dream: 5%

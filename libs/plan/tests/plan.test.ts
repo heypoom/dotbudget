@@ -1,6 +1,6 @@
 import * as fs from 'fs'
 
-import {parsePlanBlueprint, calculateFinancialPlan} from '../src'
+import {parsePlanBlueprint, calculateMonthlyPlan} from '../src'
 
 describe('Financial Planner', () => {
   const SampleFile = fs.readFileSync('./plan.yml', 'utf-8')
@@ -16,7 +16,7 @@ describe('Financial Planner', () => {
 
   it('should be able to calculate financial plan', () => {
     const plan = parsePlanBlueprint(SampleFile)
-    const {allocations} = calculateFinancialPlan(plan, 130000)
+    const {allocations} = calculateMonthlyPlan(plan, 130000)
 
     allocations //?
 

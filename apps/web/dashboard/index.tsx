@@ -40,18 +40,18 @@ function transformBudget(data: Budget[]): CurrentBudget[] {
 const BudgetGrid = () => {
   const {plan} = useStore('plan')
 
-  const {budgets: monthlyBudgets} = plan?.data
+  const {budgets} = plan?.data
 
-  console.table(monthlyBudgets)
+  // console.log('Monthly Plan', plan?.data)
+  // console.table(budgets)
 
-  const budgets: CurrentBudget[] = useMemo(
-    () => transformBudget(monthlyBudgets),
-    [monthlyBudgets]
-  )
+  const data: CurrentBudget[] = useMemo(() => {
+    return transformBudget(budgets)
+  }, [budgets])
 
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 md:gap-5 p-6">
-      {budgets.map(budget => (
+      {data.map(budget => (
         <BudgetCard key={budget.name} {...budget} />
       ))}
     </div>

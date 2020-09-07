@@ -3,9 +3,10 @@ import {calculateInvestments} from './calculate-investments'
 import {calculateMonthlyBudgets} from './calculate-budgets'
 
 import {PlanBlueprint, MonthlyPlan} from '../@types'
+import {calculateUnbudgetedJars} from './calculate-unallocated'
 
-/** Calculates the financial plan for the current month, given the remaining money to be budgeted. */
-export function calculateFinancialPlan(
+/** Calculates the monthly financial plan, given the remaining money to be budgeted. */
+export function calculateMonthlyPlan(
   blueprint: PlanBlueprint,
   remaining: number
 ): MonthlyPlan {
@@ -15,15 +16,19 @@ export function calculateFinancialPlan(
   // Calculate the money to be allocated for the 6 jars.
   const jars = calculateJars(blueprint.jars, remaining)
 
-  // use the money in the "investment" jar to invest in varying markets to reduce risk.
+  // Use the money in the "investment" jar to invest in varying markets to reduce risk.
   const investments = calculateInvestments(
     blueprint.investments,
     jars.investment
   )
 
+  // Calculate the remaining money that haven't been budgeted for each jars.
+  const unbudgeted = calculateUnbudgetedJars(budgets, jars)
+
   return {
     jars,
     investments,
-    budgets: budgets,
+    budgets,
+    unbudgeted,
   }
 }

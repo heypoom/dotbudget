@@ -14,4 +14,7 @@ export interface MonthlyPlan {
 
   /** The monthly budget we've allocated for this month. */
   budgets: Budget[]
+
+  /** The amount of budgets that haven't been budgeted into each jars. */
+  unbudgeted: JarAllocations
 }
