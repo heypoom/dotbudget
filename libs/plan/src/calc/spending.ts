@@ -14,11 +14,7 @@ function getCurrentDateRange(range: DateRange, d = new Date()): string {
 function filterSpendingByDateRange(dateRange: DateRange, d = new Date()) {
   const predicate = getCurrentDateRange(dateRange, d)
 
-  return (spending: Spending) => {
-    console.log(`${spending.date} = ${predicate} (${dateRange})`)
-
-    return spending.date.endsWith(predicate)
-  }
+  return (spending: Spending) => spending.date.endsWith(predicate)
 }
 
 export const getTotalSpending = (
