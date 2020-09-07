@@ -1,5 +1,5 @@
 import * as YAML from 'yaml'
-import {mapValues} from 'lodash'
+import {mapValues, isString} from 'lodash'
 
 import {parseBudgets} from './budget.parser'
 
@@ -7,8 +7,11 @@ import {BlueprintInputSchema, PlanBlueprint, JarPartition} from '../@types'
 
 const parsePercent = (s: string): number => Number(s.replace(/%/, ''))
 
-const parseJar = (s: string): JarPartition =>
-  s.endsWith('%') ? {percent: parsePercent(s)} : {amount: Number(s)}
+function parseJar(s: string | number): JarPartition {
+  if (isString(s) && s.endsWith('%')) return {percent: parsePercent(s)}
+
+  return {amount: Number(s)}
+}
 
 export function parsePlanBlueprint(yml: string): PlanBlueprint {
   const data: BlueprintInputSchema = YAML.parse(yml)

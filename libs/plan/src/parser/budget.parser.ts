@@ -6,11 +6,21 @@ import {parseFrequency} from './frequency.parser'
 
 import {ParserOf, Budget, Jar, frequencies} from '../@types'
 
-const exprParser = new ExprParser()
-
 const budgetMetaRegex = new RegExp(
   `(fixed)?\\s?(${frequencies.join('|')}) (.*)`
 )
+
+const exprParser = new ExprParser()
+
+function safeEval(expr: string) {
+  try {
+    return exprParser.evaluate(expr)
+  } catch (err) {
+    throw new ParserError(
+      `unable to evaluate expression: ${expr} -- ${err.message}`
+    )
+  }
+}
 
 /**
  * Parse string-encoded metadata (e.g. fixed yearly 15000)
@@ -29,7 +39,7 @@ function parseBudgetMetadata(
   }
 
   const [_, isFixed, frequency, amountExpression] = match
-  const amount = exprParser.evaluate(amountExpression)
+  const amount = safeEval(amountExpression)
 
   return {isFixed: !!isFixed, frequency: parseFrequency(frequency), amount}
 }
@@ -47,9 +57,9 @@ const createBudget = (
 ): Budget => ({name, category, jar, ...parseBudgetMetadata(meta)})
 
 export const parseBudgets: ParserOf<'budgets'> = input =>
-  flatMap(input, (record, category) =>
+  flatMap(input, ({jar, ...record}, category) =>
     flatMap(
       record,
-      (meta, name): Budget => createBudget(record.jar, category, name, meta)
+      (meta, name): Budget => createBudget(jar, category, name, meta)
     )
   )

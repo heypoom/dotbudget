@@ -24,8 +24,8 @@ budgets:
   transit:
     jar: necessity
     electricity: monthly 2500
-    motorcycle: daily transit (10 * 2)
-    bts: monthly transit (950 + 500)
+    motorcycle: daily (10 * 2)
+    bts: monthly (950 + 500)
   food:
     jar: necessity
     dining: daily 200
