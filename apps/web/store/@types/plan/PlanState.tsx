@@ -7,5 +7,10 @@ export interface PlanState {
     data: MonthlyPlan
 
     budgetable: number
+
+    selected: {
+      category: string
+      name: string
+    } | null
   }
 }

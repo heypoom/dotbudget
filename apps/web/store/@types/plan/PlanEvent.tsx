@@ -6,4 +6,9 @@ export interface PlanEvent {
     name: string
     amount: number
   }
+
+  'plan/select': {
+    category: string
+    name: string
+  }
 }

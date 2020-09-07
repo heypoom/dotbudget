@@ -3,6 +3,7 @@ import {evaluatePlanSource, rebuildPlan} from '@dotbudget/plan'
 import {StoreModule} from '../@types'
 
 import {SamplePlanText} from '../../utils/sample-plan-text'
+import {Stream} from 'stream'
 
 export const PlanModule: StoreModule = store => {
   store.on('@init', () => {
@@ -38,5 +39,16 @@ export const PlanModule: StoreModule = store => {
     const plan = rebuildPlan({...blueprint, budgets}, budgetable)
 
     return {plan: {...state.plan, ...plan}}
+  })
+
+  store.on('plan/select', (state, event) => {
+    const prev = state.plan.selected
+
+    const isSame =
+      event.name === prev?.name && event.category === prev?.category
+
+    return {
+      plan: {...state.plan, selected: isSame ? null : event},
+    }
   })
 }
