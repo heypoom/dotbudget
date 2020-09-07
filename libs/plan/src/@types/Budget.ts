@@ -34,7 +34,7 @@ export interface Budget {
   /** How often are we going to spend money on this item? (e.g. daily, monthly, yearly) */
   frequency: Frequency
 
-  /** How much money are we allocating to this item? */
+  /** How much money have we allocated to this item? */
   amount: number
 }
 

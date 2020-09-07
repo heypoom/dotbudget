@@ -18,4 +18,4 @@ export type Jar = typeof jars[number]
  * How do we want to allocate the money for this jar?
  * We can either allocate as percentage OR as a fixed amount.
  **/
-export type JarPartition = {percent: number} | {amount: number}
+export type JarPartition = {percent?: number; amount?: number}

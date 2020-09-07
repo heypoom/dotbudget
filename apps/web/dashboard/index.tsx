@@ -10,7 +10,7 @@ import {useStore} from '../store'
 
 import {PlanEditor} from '../editor/PlanEditor'
 
-export const iconMap = {
+export const iconMap: Record<string, string> = {
   Dining: 'utensils-alt',
   Snacks: 'ice-cream',
   Motorcycle: 'motorcycle',
@@ -27,12 +27,12 @@ export const iconMap = {
 function transformBudget(data: Budget[]): CurrentBudget[] {
   const budgets = data.map(b => ({
     ...b,
-    icon: iconMap[b.title] || iconMap[b.category] || 'money-bill-wave',
+    icon: iconMap[b.name] || iconMap[b.category] || 'money-bill-wave',
     spent: 700,
   }))
 
-  const fixedGoesLast = sortBy(budgets, o => !o.isFlexible)
-  const overGoesFirst = sortBy(fixedGoesLast, o => !(o.spent > o.allocated))
+  const fixedGoesLast = sortBy(budgets, o => o.isFixed)
+  const overGoesFirst = sortBy(fixedGoesLast, o => !(o.spent > o.amount))
 
   return overGoesFirst
 }
@@ -40,7 +40,7 @@ function transformBudget(data: Budget[]): CurrentBudget[] {
 const BudgetGrid = () => {
   const {plan} = useStore('plan')
 
-  const {monthlyBudgets} = plan?.data
+  const {budgets: monthlyBudgets} = plan?.data
 
   console.table(monthlyBudgets)
 
@@ -52,7 +52,7 @@ const BudgetGrid = () => {
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-5 p-6">
       {budgets.map(budget => (
-        <BudgetCard key={budget.title} {...budget} />
+        <BudgetCard key={budget.name} {...budget} />
       ))}
     </div>
   )

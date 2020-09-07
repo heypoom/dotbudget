@@ -1,13 +1,13 @@
 import {
   PlanBlueprint,
-  CalculatedPlan,
+  MonthlyPlan,
   parsePlanBlueprint,
   calculateFinancialPlan,
 } from '@dotbudget/plan'
 
 interface EvaluatedPlan {
   blueprint: PlanBlueprint
-  data: CalculatedPlan
+  data: MonthlyPlan
   source: string
 }
 

@@ -1,5 +1,8 @@
-import {map, flatMap} from 'lodash'
+import {flatMap} from 'lodash'
 import {Parser as ExprParser} from 'expr-eval'
+
+import {ParserError} from './errors'
+import {parseFrequency} from './frequency.parser'
 
 import {ParserOf, Budget, Jar, frequencies} from '../@types'
 
@@ -20,12 +23,15 @@ function parseBudgetMetadata(
   item: string
 ): Pick<Budget, 'isFixed' | 'frequency' | 'amount'> {
   const match = item.match(budgetMetaRegex)
-  if (!match) return {}
+
+  if (!match) {
+    throw new ParserError(`budget information syntax is incorrect: "${item}"`)
+  }
 
   const [_, isFixed, frequency, amountExpression] = match
   const amount = exprParser.evaluate(amountExpression)
 
-  return {isFixed: !!isFixed, frequency, amount}
+  return {isFixed: !!isFixed, frequency: parseFrequency(frequency), amount}
 }
 
 /**
@@ -40,13 +46,10 @@ const createBudget = (
   meta: string
 ): Budget => ({name, category, jar, ...parseBudgetMetadata(meta)})
 
-export const parseBudgets: ParserOf<'budgets'> = input => {
-  const budgets = flatMap(input, (record, category) =>
+export const parseBudgets: ParserOf<'budgets'> = input =>
+  flatMap(input, (record, category) =>
     flatMap(
       record,
       (meta, name): Budget => createBudget(record.jar, category, name, meta)
     )
   )
-
-  return budgets
-}

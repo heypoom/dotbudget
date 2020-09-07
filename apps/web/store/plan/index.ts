@@ -17,8 +17,14 @@ export const PlanModule: PlanStore = store => {
   })
 
   store.on('plan/setPlanSource', (state, event) => {
-    const plan = evaluatePlanSource(event)
+    try {
+      const plan = evaluatePlanSource(event)
 
-    return {plan: {...state.plan, ...plan}}
+      return {plan: {...state.plan, ...plan}}
+    } catch (err) {
+      console.warn('Plan Blueprint Parse Error:', {err})
+
+      return state
+    }
   })
 }

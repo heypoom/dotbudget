@@ -1,41 +1,29 @@
-import {getJarAllocations} from './plans'
-import {getAllocations} from './allocations'
-import {calculateUnallocated} from './unallocated'
-import {calculateInvestmentPlan} from './investment'
+import {calculateJars} from './calculate-jars'
+import {calculateInvestments} from './calculate-investments'
+import {calculateMonthlyBudgets} from './calculate-budgets'
 
-import {PlanBlueprint, Jars, Budget} from '../@types'
+import {PlanBlueprint, MonthlyPlan} from '../@types'
 
+/** Calculates the financial plan for the current month, given the remaining money to be budgeted. */
 export function calculateFinancialPlan(
   blueprint: PlanBlueprint,
-  totalBudget: number
-): CalculatedPlan {
-  const plans = getJarAllocations(blueprint.plan, totalBudget)
+  remaining: number
+): MonthlyPlan {
+  // Calculate the money to be allocated for this month.
+  const budgets = calculateMonthlyBudgets(blueprint.budgets)
 
-  const {
-    allocations,
-    planAllocations,
-    breakdown,
-    monthlyBudgets,
-  } = getAllocations(blueprint.budget, blueprint.budgetCategory)
+  // Calculate the money to be allocated for the 6 jars.
+  const jars = calculateJars(blueprint.jars, remaining)
 
-  const unallocated = calculateUnallocated(plans, planAllocations)
-
-  const investmentPlan = calculateInvestmentPlan(
-    plans.investment ?? 0,
-    blueprint.investment
+  // use the money in the "investment" jar to invest in varying markets to reduce risk.
+  const investments = calculateInvestments(
+    blueprint.investments,
+    jars.investment
   )
 
   return {
-    plans,
-    allocations,
-    unallocated,
-    breakdown,
-    investmentPlan,
-    monthlyBudgets,
+    jars,
+    investments,
+    budgets: budgets,
   }
 }
-
-export * from './plans'
-export * from './investment'
-export * from './allocations'
-export * from './unallocated'

@@ -1,9 +1,9 @@
-import {PlanBlueprint, CalculatedPlan} from '@dotbudget/plan'
+import {PlanBlueprint, MonthlyPlan} from '@dotbudget/plan'
 
 export interface PlanState {
   plan: {
     source: string
     blueprint: PlanBlueprint
-    data: CalculatedPlan
+    data: MonthlyPlan
   }
 }
