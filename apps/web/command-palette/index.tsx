@@ -42,10 +42,8 @@ export function CommandPalette() {
 
     setCompletions(completions)
 
-    dispatch('plan/select', {
-      category: completion.category,
-      name: completion.name,
-    })
+    const {category, name} = completion
+    dispatch('plan/select', {category, name})
   }
 
   return (

@@ -41,7 +41,7 @@ export const PlanModule: StoreModule = store => {
     return {plan: {...state.plan, ...plan}}
   })
 
-  store.on('plan/select', (state, event) => {
+  store.on('plan/toggle', (state, event) => {
     const prev = state.plan.selected
 
     const isSame =
@@ -51,6 +51,10 @@ export const PlanModule: StoreModule = store => {
       plan: {...state.plan, selected: isSame ? null : event},
     }
   })
+
+  store.on('plan/select', (state, event) => ({
+    plan: {...state.plan, selected: event},
+  }))
 
   store.on('plan/deselect', state => ({plan: {...state.plan, selected: null}}))
 }

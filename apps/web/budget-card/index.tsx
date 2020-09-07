@@ -24,7 +24,7 @@ export function BudgetCard(props: BudgetCardProps) {
   const spendingClass = c('text-xl sm:text-2xl pt-2 font-medium', textColor)
   const iconClass = c('far', 'fa-' + icon, textColor)
 
-  const onCardClicked = () => dispatch('plan/select', {category, name})
+  const onCardClicked = () => dispatch('plan/toggle', {category, name})
 
   return (
     <div

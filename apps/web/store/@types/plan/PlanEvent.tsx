@@ -1,16 +1,13 @@
+import {BudgetSelection} from '../../../@types/BudgetSelection'
+
 export interface PlanEvent {
   'plan/setPlanSource': string
 
   'plan/reallocate': {
-    category: string
-    name: string
     amount: number
-  }
+  } & BudgetSelection
 
-  'plan/select': {
-    category: string
-    name: string
-  }
-
+  'plan/select': BudgetSelection
+  'plan/toggle': BudgetSelection
   'plan/deselect': undefined
 }

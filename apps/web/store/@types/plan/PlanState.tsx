@@ -1,4 +1,5 @@
 import {PlanBlueprint, MonthlyPlan} from '@dotbudget/plan'
+import {BudgetSelection} from 'apps/web/@types/BudgetSelection'
 
 export interface PlanState {
   plan: {
@@ -7,10 +8,6 @@ export interface PlanState {
     data: MonthlyPlan
 
     budgetable: number
-
-    selected: {
-      category: string
-      name: string
-    } | null
+    selected: BudgetSelection | null
   }
 }
