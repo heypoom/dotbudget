@@ -1,4 +1,4 @@
-import {evaluatePlanSource, rebuildPlan} from '@dotbudget/plan'
+import {evaluatePlanSource, rebuildPlan, withAmount} from '@dotbudget/plan'
 
 import {StoreModule} from '../@types'
 
@@ -31,12 +31,11 @@ export const PlanModule: StoreModule = store => {
 
     const budgets = blueprint.budgets.map(b =>
       b.name === event.name && b.category === event.category
-        ? {...b, amount: event.amount}
+        ? withAmount(b, event.amount)
         : b
     )
 
     const plan = rebuildPlan({...blueprint, budgets}, budgetable)
-    console.log('Plan Source:\n', plan.source)
 
     return {plan: {...state.plan, ...plan}}
   })

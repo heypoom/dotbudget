@@ -39,6 +39,8 @@ function transformBudget(
   return overGoesFirst
 }
 
+const keyOf = (budget: Budget) => budget.name + '/' + budget.category
+
 const BudgetGrid = () => {
   const {plan} = useStore('plan')
   const {budgets} = plan?.data
@@ -52,7 +54,7 @@ const BudgetGrid = () => {
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 md:gap-5 p-6">
       {data.map(budget => (
-        <BudgetCard key={budget.name} {...budget} />
+        <BudgetCard key={keyOf(budget)} {...budget} />
       ))}
     </div>
   )

@@ -25,3 +25,9 @@ export function getExpression(budget: Budget): string {
   // Otherwise, we update it to keep the expression in sync.
   return budget.amount.toString()
 }
+
+export const withAmount = (budget: Budget, amount: number) => ({
+  ...budget,
+  amount,
+  expression: amount.toString(),
+})
