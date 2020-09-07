@@ -17,7 +17,8 @@ interface TabProps {
 
 const Tab: React.FC<TabProps> = ({children, onClick}) => (
   <button
-    className="p-2 w-full bg-black text-white text-center cursor-pointer border-none rounded-none shadow-lg z-10"
+    className="p-2 w-full text-white text-center cursor-pointer border-none rounded-none z-10"
+    style={{background: '#202124'}}
     onClick={onClick}
   >
     {children}
@@ -30,8 +31,13 @@ export function Editor() {
   const View = EditorComponents[editor]
   if (!View) return null
 
+  const style = {
+    background: '#202124',
+    boxShadow: '1px 1px 10px rgba(0, 0, 0, 0.7)',
+  }
+
   return (
-    <div style={{background: '#202124'}}>
+    <div style={style}>
       <div className="flex">
         {panels.map(p => (
           <Tab onClick={() => setEditor(p)} key={p}>
