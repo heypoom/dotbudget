@@ -1,4 +1,4 @@
-import {evaluatePlanSource, rebuildPlan, withAmount} from '@dotbudget/plan'
+import {evaluatePlanSource, evaluatePlan, withAmount} from '@dotbudget/plan'
 
 import {StoreModule} from '../@types'
 
@@ -35,7 +35,7 @@ export const PlanModule: StoreModule = store => {
         : b
     )
 
-    const plan = rebuildPlan({...blueprint, budgets}, budgetable)
+    const plan = evaluatePlan({...blueprint, budgets}, budgetable)
 
     return {plan: {...state.plan, ...plan}}
   })

@@ -22,7 +22,7 @@ export function evaluatePlanSource(
   return {blueprint, data, source}
 }
 
-export function rebuildPlan(
+export function evaluatePlan(
   blueprint: PlanBlueprint,
   total: number
 ): EvaluatedPlan {
