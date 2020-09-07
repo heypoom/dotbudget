@@ -20,11 +20,11 @@ export function CommandPalette() {
 
     if (a1 === 'p') {
       dispatch('plan/reallocate', {category, name, amount: Number(a2)})
+      setText('')
       return
     }
 
     dispatch('spending/log', {category, name, amount: Number(a1)})
-
     setText('')
   }
 
