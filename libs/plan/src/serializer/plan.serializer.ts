@@ -4,7 +4,9 @@ import {mapValues, groupBy, merge} from 'lodash'
 import {PlanBlueprint, BlueprintInputSchema, Budget} from '@dotbudget/plan'
 
 const createBudgetMetadata = (budget: Budget): string =>
-  [budget.isFixed && 'fixed', budget.frequency, budget.amount].join(' ').trim()
+  [budget.isFixed ? 'fixed' : '', budget.frequency, budget.amount]
+    .join(' ')
+    .trim()
 
 function transformBudgetsToInputSchema(
   budgets: Budget[]
@@ -14,8 +16,8 @@ function transformBudgetsToInputSchema(
   return mapValues(byCategory, budgets =>
     budgets
       .map(budget => ({
-        [budget.category]: createBudgetMetadata(budget),
         jar: budget.jar,
+        [budget.name]: createBudgetMetadata(budget),
       }))
       .reduce(merge)
   )

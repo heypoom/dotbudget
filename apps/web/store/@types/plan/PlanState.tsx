@@ -5,5 +5,7 @@ export interface PlanState {
     source: string
     blueprint: PlanBlueprint
     data: MonthlyPlan
+
+    budgetable: number
   }
 }

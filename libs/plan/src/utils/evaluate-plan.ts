@@ -3,6 +3,7 @@ import {
   MonthlyPlan,
   parsePlanBlueprint,
   calculateMonthlyPlan,
+  planBlueprintToYaml,
 } from '@dotbudget/plan'
 
 interface EvaluatedPlan {
@@ -11,9 +12,22 @@ interface EvaluatedPlan {
   source: string
 }
 
-export function evaluatePlanSource(source: string): EvaluatedPlan {
+export function evaluatePlanSource(
+  source: string,
+  total: number
+): EvaluatedPlan {
   const blueprint = parsePlanBlueprint(source)
-  const data = calculateMonthlyPlan(blueprint, 200000)
+  const data = calculateMonthlyPlan(blueprint, total)
+
+  return {blueprint, data, source}
+}
+
+export function rebuildPlan(
+  blueprint: PlanBlueprint,
+  total: number
+): EvaluatedPlan {
+  const source = planBlueprintToYaml(blueprint)
+  const data = calculateMonthlyPlan(blueprint, total)
 
   return {blueprint, data, source}
 }

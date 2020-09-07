@@ -1,4 +1,4 @@
-import {evaluatePlanSource} from '@dotbudget/plan'
+import {evaluatePlanSource, rebuildPlan} from '@dotbudget/plan'
 
 import {StoreModule} from '../@types'
 
@@ -6,14 +6,17 @@ import {SamplePlanText} from '../../utils/sample-plan-text'
 
 export const PlanModule: StoreModule = store => {
   store.on('@init', () => {
-    const plan = evaluatePlanSource(SamplePlanText)
+    const budgetable = 200000
+    const plan = evaluatePlanSource(SamplePlanText, budgetable)
 
-    return {plan: {...plan}}
+    return {plan: {...plan, budgetable}}
   })
 
   store.on('plan/setPlanSource', (state, event) => {
+    const {budgetable} = state.plan
+
     try {
-      const plan = evaluatePlanSource(event)
+      const plan = evaluatePlanSource(event, budgetable)
 
       return {plan: {...state.plan, ...plan}}
     } catch (err) {
@@ -21,5 +24,19 @@ export const PlanModule: StoreModule = store => {
 
       return state
     }
+  })
+
+  store.on('plan/reallocate', (state, event) => {
+    const {blueprint, budgetable} = state.plan
+
+    const budgets = blueprint.budgets.map(b =>
+      b.name === event.name && b.category === event.category
+        ? {...b, amount: event.amount}
+        : b
+    )
+
+    const plan = rebuildPlan({...blueprint, budgets}, budgetable)
+
+    return {plan: {...state.plan, ...plan}}
   })
 }

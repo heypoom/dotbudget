@@ -29,7 +29,7 @@ const ExpandableCard = styled.div`
 
 export function BudgetCard(props: BudgetCardProps) {
   const [isExpanding, setExpanding] = useState(false)
-  const {dispatch} = useStore('spending')
+  const {dispatch} = useStore('spending', 'plan')
 
   const {spent = 0, amount = 0, isFixed, icon, category, name} = props
 
@@ -45,7 +45,9 @@ export function BudgetCard(props: BudgetCardProps) {
   const iconClass = c('far', 'fa-' + icon, textColor)
 
   function onCardClicked() {
-    dispatch('spending/log', {category, name, amount: 50})
+    // dispatch('spending/log', {category, name, amount: amount + 10})
+
+    dispatch('plan/reallocate', {category, name, amount: amount + 20})
   }
 
   return (
