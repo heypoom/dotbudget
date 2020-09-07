@@ -10,10 +10,7 @@ import {CommandPalette} from '../command-palette'
 import {BudgetCard, CurrentBudget} from '../budget-card'
 
 const getBudgetIcon = (b: Budget, iconMap: Record<string, string> = {}) =>
-  iconMap[keyOf(b)] ||
-  iconMap[b.name] ||
-  iconMap[b.category] ||
-  'money-bill-wave'
+  iconMap[keyOf(b)] || iconMap[b.category] || 'money-bill-wave'
 
 function transformBudget(
   data: Budget[],

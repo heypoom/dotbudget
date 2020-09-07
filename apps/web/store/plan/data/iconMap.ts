@@ -1,12 +1,17 @@
 export const defaultIconMap: Record<string, string> = {
-  dining: 'utensils-alt',
-  snacks: 'ice-cream',
-  motorcycle: 'motorcycle',
-  bts: 'subway',
-  water: 'faucet-drip',
-  electricity: 'bolt',
-  cooking: 'oven',
+  // Icons for the example categories.
   food: 'utensils-alt',
   condo: 'home',
   transit: 'car',
+
+  // Icons for the example budget items.
+  'condo/common fee': 'home',
+  'condo/electricity': 'bolt',
+  'condo/rent': 'home',
+  'condo/water': 'faucet-drip',
+  'food/cooking': 'oven',
+  'food/dining': 'utensils-alt',
+  'food/snacks': 'ice-cream',
+  'transit/bts': 'subway',
+  'transit/motorcycle': 'motorcycle',
 }
