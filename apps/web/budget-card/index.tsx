@@ -2,30 +2,13 @@ import React, {useState} from 'react'
 import c from 'classnames'
 import Ink from 'react-ink'
 
-import {css} from '@emotion/core'
-import styled from '@emotion/styled'
-
 import {BudgetCardTitle} from './CardTitle'
 import {BudgetDisplay} from './BudgetDisplay'
 import {BudgetCardPercent} from './CardPercent'
-
 import {BudgetCardProps} from './types'
-import {toTextColor} from '../ui/colors'
-import {divide} from 'lodash'
-import {useStore} from '../store'
 
-const ExpandableCard = styled.div`
-  ${props =>
-    expand &&
-    css`
-      /* position: fixed; */
-      width: calc(100vw - 45px);
-      height: calc(100vh - 45px);
-      z-index: 100;
-      transition: 0.3s cubic-bezier(0.4, 0, 0, 1.53) all;
-      opacity: 1;
-    `}
-`
+import {useStore} from '../store'
+import {toTextColor} from '../ui/colors'
 
 export function BudgetCard(props: BudgetCardProps) {
   const [isExpanding, setExpanding] = useState(false)
