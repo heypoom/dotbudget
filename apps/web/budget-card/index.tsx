@@ -6,16 +6,17 @@ import {BudgetCardTitle} from './CardTitle'
 import {BudgetDisplay} from './BudgetDisplay'
 import {BudgetCardPercent} from './CardPercent'
 import {BudgetCardProps} from './types'
+import {useSelectedCard} from './hooks/useSelectedCard.hook'
 
 import {useStore} from '../store'
 import {toTextColor} from '../ui/colors'
 
 export function BudgetCard(props: BudgetCardProps) {
   const [isExpanding, setExpanding] = useState(false)
-  const {plan, dispatch} = useStore('spending', 'plan')
-  const {selected} = plan
+  const {dispatch} = useStore('spending')
 
   const {spent = 0, amount = 0, isFixed, icon, category, name} = props
+  const {isSelected, selected} = useSelectedCard(name, category)
 
   const isOverBudget = spent > amount
   const textColor = toTextColor(isOverBudget)
@@ -23,7 +24,6 @@ export function BudgetCard(props: BudgetCardProps) {
   const spendingClass = c('text-xl sm:text-2xl pt-2 font-medium', textColor)
   const iconClass = c('far', 'fa-' + icon, textColor)
 
-  const isSelected = selected?.name === name && selected?.category === category
   const onCardClicked = () => dispatch('plan/select', {category, name})
 
   return (
@@ -31,7 +31,8 @@ export function BudgetCard(props: BudgetCardProps) {
       className={c(
         'relative mx-auto flex flex-col rounded-lg shadow-xl w-full',
         isFixed && 'opacity-75',
-        !selected || isSelected ? 'bg-dark' : 'bg-darker'
+        !selected || isSelected ? 'bg-dark' : 'bg-darker',
+        isSelected && 'shadow-2xl'
       )}
       onClick={onCardClicked}
     >

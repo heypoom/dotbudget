@@ -1,17 +1,22 @@
 import React from 'react'
 import c from 'classnames'
 
-import {toBackground, toTextColor} from '../ui/colors'
 import {BudgetCardProps} from './types'
+import {useSelectedCard} from './hooks/useSelectedCard.hook'
+
+import {toBackground, toTextColor} from '../ui/colors'
 
 export function BudgetCardTitle(props: BudgetCardProps) {
   const {spent = 0, amount = 0, name, category} = props
+  const {isSelected, selected} = useSelectedCard(name, category)
 
   const isOverBudget = spent > amount
 
   const className = c(
     'flex rounded-tl-lg rounded-tr-lg px-5 py-1 text-white text-center md:text-left shadow-md z-10 h-8 overflow-hidden',
-    toBackground(isOverBudget)
+    !selected || isSelected
+      ? toBackground(isOverBudget)
+      : toTextColor(isOverBudget)
   )
 
   if (isOverBudget) {
