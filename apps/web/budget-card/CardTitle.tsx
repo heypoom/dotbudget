@@ -14,9 +14,7 @@ export function BudgetCardTitle(props: BudgetCardProps) {
 
   const className = c(
     'flex rounded-tl-lg rounded-tr-lg px-5 py-1 text-white text-center md:text-left shadow-md z-10 h-8 overflow-hidden',
-    !selected || isSelected
-      ? toBackground(isOverBudget)
-      : toTextColor(isOverBudget)
+    isSelected ? toBackground(isOverBudget) : toTextColor(isOverBudget)
   )
 
   if (isOverBudget) {
