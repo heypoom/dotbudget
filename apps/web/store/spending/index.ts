@@ -1,4 +1,4 @@
-import {parseSpending, date, Serialize} from '@dotbudget/plan'
+import {parseSpending, date, serializeSpending} from '@dotbudget/plan'
 
 import {StoreModule} from '../@types'
 
@@ -26,7 +26,7 @@ export const SpendingModule: StoreModule = store => {
 
   store.on('spending/log', (state, event) => {
     const data = [...state.spending.data, {...event, date: date()}]
-    const source = Serialize.spending(data)
+    const source = serializeSpending(data)
 
     return {
       spending: {...state.spending, data, source},

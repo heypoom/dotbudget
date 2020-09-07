@@ -1,5 +1,5 @@
 import {
-  Serialize,
+  serializePlan,
   MonthlyPlan,
   PlanBlueprint,
   parsePlanBlueprint,
@@ -26,7 +26,7 @@ export function rebuildPlan(
   blueprint: PlanBlueprint,
   total: number
 ): EvaluatedPlan {
-  const source = Serialize.plan(blueprint)
+  const source = serializePlan(blueprint)
   const data = calculateMonthlyPlan(blueprint, total)
 
   return {blueprint, data, source}
