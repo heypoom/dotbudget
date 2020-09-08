@@ -1,13 +1,17 @@
 import {useBudgetCompletion} from '../budgets'
+import {useCommandCompletion} from '../commands'
 
-export function useCommandCompletion() {
+export function useCompletion() {
   const BudgetCompletion = useBudgetCompletion()
+  const CommandCompletion = useCommandCompletion()
 
-  const [budget] = BudgetCompletion.completions
+  const budgets = BudgetCompletion.completions
+  const commands = CommandCompletion.completions
 
   function handleCompletionChange(text: string) {
     BudgetCompletion.handleChange(text)
+    CommandCompletion.handleChange(text)
   }
 
-  return {budget, handleCompletionChange}
+  return {budgets, commands, handleCompletionChange}
 }

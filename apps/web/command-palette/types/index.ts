@@ -7,6 +7,7 @@ export interface Command {
   title: string
   aliases: string[]
   onCommand: (context: CommandContext) => void
+  validate: (args: string[], context?: CommandContext) => boolean
 }
 
 export interface CommandContext {

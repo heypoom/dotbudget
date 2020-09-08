@@ -1,14 +1,19 @@
-import {commandList, logSpending} from '.'
+import {commandList} from '.'
+import {getCommandArity} from './utils'
 
 import {CommandContext} from '../types'
+import {createCommandCompletion} from '../completions/commands'
 
 export function handleCommand(context: CommandContext, commands = commandList) {
-  const {args} = context
+  // Retrieve the matching command from completion module.
+  const [command] = createCommandCompletion(context.args)
 
-  // Searches for the commands.
-  const command = commands.find(cmd => cmd.aliases.includes(args[1]))
-  if (command) return command.onCommand({...context, args: args.slice(2)})
+  // Slice the arguments to match the receiver.
+  const args = context.args.slice(getCommandArity(command))
 
-  // Simply log the spending by default.
-  logSpending.onCommand({...context, args: args.slice(1)})
+  // Validate the command before execution
+  if (!command.validate(args)) return
+
+  // Finally, execute the command.
+  return command.onCommand({...context, args})
 }

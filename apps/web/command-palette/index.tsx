@@ -3,13 +3,15 @@ import React, {useState} from 'react'
 import {handleCommand} from './commands/handler'
 
 import {useStore} from '../store'
-import {useCommandCompletion} from './completions/hooks/useCompletion.hook'
+import {useCompletion} from './completions/hooks/useCompletion.hook'
+import {HintText} from './HintText'
 
 export function CommandPalette() {
   const [text, setText] = useState('')
-
   const {dispatch} = useStore('plan', 'spending')
-  const {budget, handleCompletionChange} = useCommandCompletion()
+
+  const {budgets, commands, handleCompletionChange} = useCompletion()
+  const [budget] = budgets
 
   function onCommand(text: string) {
     handleCommand({budget, dispatch, args: text.trim().split(' ')})
@@ -35,14 +37,7 @@ export function CommandPalette() {
           onKeyPress={e => e.key === 'Enter' && onCommand(text)}
         />
 
-        {budget && (
-          <div
-            className="absolute text-white text-xl pointer-events-none opacity-25"
-            style={{right: 25, top: 12}}
-          >
-            {budget.category}/{budget.name}
-          </div>
-        )}
+        <HintText budgets={budgets} commands={commands} />
       </div>
     </div>
   )
