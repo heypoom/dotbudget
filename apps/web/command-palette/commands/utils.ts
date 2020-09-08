@@ -19,3 +19,5 @@ export function getCommandArity(command: Command) {
 
   return 2
 }
+
+export const isNumeric = (amount: string) => /^\d+$/.test(amount)

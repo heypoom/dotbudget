@@ -1,9 +1,7 @@
 import {keyOf} from '@dotbudget/plan'
 
-import {withAmount} from './utils'
+import {withAmount, isNumeric} from './utils'
 import {Command} from '../types'
-
-const isNumeric = (amount: string) => !isNaN(parseInt(amount))
 
 export const reallocate: Command = {
   title: 'set budget',
@@ -30,3 +28,5 @@ export const logSpending: Command = {
 }
 
 export const commandList: Command[] = [reallocate, setIcon, logSpending]
+
+export * from './handler'
