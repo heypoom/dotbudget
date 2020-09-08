@@ -13,8 +13,6 @@ export const PersistModule = (
   const onChange = (state: StoreState) => {
     try {
       storage.setItem(key, JSON.stringify(state))
-
-      console.log('[Persist] Save ->', {state})
     } catch (err) {
       return
     }
