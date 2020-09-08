@@ -3,7 +3,7 @@ import {Budget} from '@dotbudget/plan'
 
 import {Command} from '../../types'
 
-import {getMatchingCommand, validateCommand} from '../../commands'
+import {validateCommand} from '../../commands'
 
 function isCommandValid(
   text: string,
