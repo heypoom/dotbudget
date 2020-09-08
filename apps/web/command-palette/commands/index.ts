@@ -1,12 +1,13 @@
 import {keyOf} from '@dotbudget/plan'
 
+import {withAmount} from './utils'
 import {Command} from '../types'
 
 export const reallocate: Command = {
   title: 'reallocate budget',
   aliases: ['p', 'r', 'plan', 'reallocate'],
-  onCommand: ({budget: {category, name}, args: [amount], dispatch}) =>
-    dispatch('plan/reallocate', {category, name, amount: Number(amount)}),
+  onCommand: ({budget, args: [amount], dispatch}) =>
+    dispatch('plan/reallocate', withAmount(budget, amount)),
 }
 
 export const setIcon: Command = {
@@ -19,8 +20,8 @@ export const setIcon: Command = {
 export const logSpending: Command = {
   title: 'log spending',
   aliases: ['l'],
-  onCommand: ({dispatch, budget: {category, name}, args: [amount]}) =>
-    dispatch('spending/log', {category, name, amount: Number(amount)}),
+  onCommand: ({dispatch, budget, args: [amount]}) =>
+    dispatch('spending/log', withAmount(budget, amount)),
 }
 
 export const commandList: Command[] = [reallocate, setIcon, logSpending]

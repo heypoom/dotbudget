@@ -1,5 +1,6 @@
 import {PlanBlueprint, MonthlyPlan} from '@dotbudget/plan'
-import {BudgetSelection} from 'apps/web/@types/BudgetSelection'
+
+import {BudgetSelection} from '../../../@types/BudgetSelection'
 
 export interface PlanState {
   plan: {

@@ -1,11 +1,12 @@
-import {BudgetSelection} from '../../../@types/BudgetSelection'
+import {
+  BudgetSelection,
+  BudgetWithAmount,
+} from '../../../@types/BudgetSelection'
 
 export interface PlanEvent {
   'plan/setPlanSource': string
 
-  'plan/reallocate': {
-    amount: number
-  } & BudgetSelection
+  'plan/reallocate': BudgetWithAmount
 
   'plan/select': BudgetSelection
   'plan/toggle': BudgetSelection

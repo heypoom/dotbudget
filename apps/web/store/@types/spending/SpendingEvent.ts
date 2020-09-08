@@ -1,9 +1,6 @@
-import {BudgetSelection} from 'apps/web/@types/BudgetSelection'
+import {BudgetWithAmount} from '../../../@types/BudgetSelection'
 
 export interface SpendingEvent {
   'spending/setSourceText': string
-
-  'spending/log': BudgetSelection & {
-    amount: number
-  }
+  'spending/log': BudgetWithAmount
 }
