@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
-import {Budget, keyOf} from '@dotbudget/plan'
+import {Budget} from '@dotbudget/plan'
 
+import {handleCommand} from './commands/handler'
 import {createBudgetCompletion} from './completions/budgets.completion'
 
 import {useStore} from '../store'
@@ -14,24 +15,8 @@ export function CommandPalette() {
 
   function onCommand(text: string) {
     const [completion] = completions
-    const {category, name} = completion
 
-    const [cmd, a1, a2] = text.trim().split(' ')
-
-    if (a1 === 'p' || a1 === 'r') {
-      dispatch('plan/reallocate', {category, name, amount: Number(a2)})
-      setText('')
-      return
-    }
-
-    if (a1 === 'i') {
-      dispatch('plan/setIcon', {key: keyOf(completion), icon: a2})
-      setText('')
-
-      return
-    }
-
-    dispatch('spending/log', {category, name, amount: Number(a1)})
+    handleCommand({budget: completion, dispatch, args: text.trim().split(' ')})
     setText('')
   }
 
