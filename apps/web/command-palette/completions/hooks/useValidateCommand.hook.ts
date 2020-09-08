@@ -33,11 +33,6 @@ export function useValidateCommand(budgets: Budget[], commands: Command[]) {
 
     const isValid = isCommandValid(text, budget, command)
 
-    console.log(`validate> ${text} is ${isValid ? 'valid' : 'invalid'}`, {
-      command,
-      budget,
-    })
-
     setInvalid(!isValid)
   }, [text, budgets, commands])
 
