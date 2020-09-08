@@ -1,44 +1,24 @@
 import React, {useState} from 'react'
-import {Budget} from '@dotbudget/plan'
 
 import {handleCommand} from './commands/handler'
-import {createBudgetCompletion} from './completions/budgets.completion'
 
 import {useStore} from '../store'
+import {useCommandCompletion} from './completions/hooks/useCompletion.hook'
 
 export function CommandPalette() {
   const [text, setText] = useState('')
-  const [completions, setCompletions] = useState<Budget[]>([])
 
-  const {plan, dispatch} = useStore('plan', 'spending')
-  const {budgets} = plan?.blueprint
+  const {dispatch} = useStore('plan', 'spending')
+  const {budget, handleCompletionChange} = useCommandCompletion()
 
   function onCommand(text: string) {
-    const [completion] = completions
-
-    handleCommand({budget: completion, dispatch, args: text.trim().split(' ')})
+    handleCommand({budget, dispatch, args: text.trim().split(' ')})
     setText('')
   }
 
   function handleChange(text: string) {
     setText(text)
-
-    const [cmd] = text.trim().split(' ')
-    const completions = createBudgetCompletion(cmd, budgets)
-
-    const [completion] = completions
-
-    if (!completion) {
-      setCompletions([])
-      dispatch('plan/deselect')
-
-      return
-    }
-
-    setCompletions(completions)
-
-    const {category, name} = completion
-    dispatch('plan/select', {category, name})
+    handleCompletionChange(text)
   }
 
   return (
@@ -55,12 +35,12 @@ export function CommandPalette() {
           onKeyPress={e => e.key === 'Enter' && onCommand(text)}
         />
 
-        {completions.length > 0 && (
+        {budget && (
           <div
             className="absolute text-white text-xl pointer-events-none opacity-25"
             style={{right: 25, top: 12}}
           >
-            {completions[0]?.category}/{completions[0]?.name}
+            {budget.category}/{budget.name}
           </div>
         )}
       </div>
