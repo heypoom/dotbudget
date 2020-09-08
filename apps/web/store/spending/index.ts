@@ -18,8 +18,6 @@ export const SpendingModule: StoreModule = store => {
 
       return {spending: {...state.spending, data, source: event}}
     } catch (err) {
-      console.warn('Spending Log Parse Error:', {err})
-
       return state
     }
   })

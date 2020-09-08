@@ -13,6 +13,8 @@ export const PersistModule = (
   const onChange = (state: StoreState) => {
     try {
       storage.setItem(key, JSON.stringify(state))
+
+      console.log('[Persist] Save ->', {state})
     } catch (err) {
       return
     }
@@ -23,15 +25,21 @@ export const PersistModule = (
   return (store: StoreonStore<StoreState, StoreEvent>) => {
     store.on('@changed', debouncedChange)
 
-    const savedState = storage.getItem(key)
+    store.on('@persist/load', () => {
+      const savedState = storage.getItem(key)
 
-    if (savedState) {
-      try {
-        console.log(`[Persist] Load ->`, {state: JSON.parse(savedState)})
-        return JSON.parse(savedState)
-      } catch (err) {
-        return {}
+      if (savedState) {
+        try {
+          console.log(`[Persist] Load ->`, {state: JSON.parse(savedState)})
+          return JSON.parse(savedState)
+        } catch (err) {
+          return {}
+        }
       }
-    }
+    })
+
+    store.on('@init', () => {
+      setTimeout(() => store.dispatch('@persist/load'), 300)
+    })
   }
 }
