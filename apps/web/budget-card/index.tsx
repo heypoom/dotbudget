@@ -42,7 +42,7 @@ export function BudgetCard(props: BudgetCardProps) {
         <div className="text-4xl">
           {icon && (
             <div>
-              <i className={iconClass} />
+              <i className={iconClass} aria-hidden />
             </div>
           )}
         </div>

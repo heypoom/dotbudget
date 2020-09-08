@@ -21,7 +21,7 @@ export function BudgetCardTitle(props: BudgetCardProps) {
     return (
       <div className={className}>
         <div>
-          <i className="fas fa-exclamation-triangle" />
+          <i className="fas fa-exclamation-triangle" aria-hidden />
         </div>
 
         <span>&nbsp;{name}</span>
