@@ -1,12 +1,14 @@
 import React, {useState} from 'react'
-import c from 'classnames'
 
 import {HintText} from './HintText'
+import {TextField} from './TextField'
 
 import {useCompletion} from './completions'
 import {handleCommand} from './commands'
+import {useInputMode} from './utils/useInputMode'
 
 import {useStore} from '../store'
+import {NumberInput} from './NumberInput'
 
 export function CommandPalette() {
   const [text, setText] = useState('')
@@ -14,6 +16,9 @@ export function CommandPalette() {
 
   const {budgets, commands, isInvalid, handleCompletionChange} = useCompletion()
   const [budget] = budgets
+
+  const inputMode = useInputMode()
+  if (inputMode === 'plan' || inputMode === 'spend') return <NumberInput />
 
   function onCommand(text: string) {
     const success = handleCommand({
@@ -30,25 +35,17 @@ export function CommandPalette() {
     handleCompletionChange(text)
   }
 
-  return (
-    <div
-      className="absolute z-20 flex items-center justify-center w-full"
-      style={{bottom: 85}}
-    >
-      <div className="relative">
-        <input
-          type="text"
-          value={text}
-          onChange={e => handleChange(e.target.value)}
-          className={c(
-            'text-2xl px-6 py-2 rounded-full focus:border-transparent outline-none shadow-lg bg-dark text-white',
-            isInvalid && 'text-red'
-          )}
-          onKeyPress={e => e.key === 'Enter' && onCommand(text)}
-        />
+  const hint = <HintText budgets={budgets} commands={commands} />
+  const noHint = budgets.length === 0 && commands.length === 0
 
-        <HintText budgets={budgets} commands={commands} />
-      </div>
-    </div>
+  return (
+    <TextField
+      value={text}
+      onChange={handleChange}
+      onEnter={onCommand}
+      isInvalid={isInvalid && !!text}
+      children={hint}
+      placeholder={noHint ? 'Enter a command...' : ''}
+    />
   )
 }

@@ -5,10 +5,12 @@ import {customContext} from 'storeon/react'
 import {PlanModule} from './plan'
 import {SpendingModule} from './spending'
 import {PersistModule} from './persist'
+import {DashboardModule} from './dashboard'
 
 export const store = createStoreon([
   PlanModule,
   SpendingModule,
+  DashboardModule,
   PersistModule(),
 ])
 
