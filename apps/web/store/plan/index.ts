@@ -50,12 +50,17 @@ export const PlanModule: StoreModule = store => {
       event.name === prev?.name && event.category === prev?.category
 
     const selected = isSame ? null : event
+    const {inputMode} = state.dashboard
 
     return {
       plan: {...state.plan, selected},
       dashboard: {
         ...state.dashboard,
-        inputMode: selected ? 'spend' : 'normal',
+        inputMode: selected
+          ? inputMode === 'normal'
+            ? 'spend'
+            : inputMode
+          : 'normal',
       },
     }
   })

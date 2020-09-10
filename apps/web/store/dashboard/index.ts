@@ -9,13 +9,15 @@ export const DashboardModule: StoreModule = store => {
     return {dashboard: {...state.dashboard, inputMode}}
   })
 
-  store.on('dashboard/toggleInputMode', (state, inputMode) => {
-    return {
-      dashboard: {
-        ...state.dashboard,
-        inputMode:
-          state.dashboard.inputMode === inputMode ? 'normal' : inputMode,
-      },
-    }
+  store.on('dashboard/toggleInputMode', (state, event) => {
+    const inputMode = state.dashboard.inputMode === event ? 'normal' : event
+
+    return {dashboard: {...state.dashboard, inputMode}}
+  })
+
+  store.on('dashboard/cycleInputMode', state => {
+    const inputMode = state.dashboard.inputMode === 'plan' ? 'spend' : 'plan'
+
+    return {dashboard: {...state.dashboard, inputMode}}
   })
 }

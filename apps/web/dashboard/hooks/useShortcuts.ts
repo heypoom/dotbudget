@@ -15,4 +15,5 @@ export function useShortcut() {
 
   useHotkeys('p', toggleInputMode('plan'), [])
   useHotkeys('l,s', toggleInputMode('spend'), [])
+  useHotkeys('m', () => dispatch('dashboard/cycleInputMode'), [])
 }
