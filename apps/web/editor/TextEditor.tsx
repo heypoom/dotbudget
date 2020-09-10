@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react'
+import React, {useState, useRef, useEffect} from 'react'
 
 import {
   ControlledEditor,
@@ -8,6 +8,7 @@ import {
 } from '@monaco-editor/react'
 
 import {editor as EditorAPI} from 'monaco-editor/esm/vs/editor/editor.api'
+import {setupMonaco} from './monaco'
 
 type Getter = () => string
 type EditorInstance = EditorAPI.IStandaloneCodeEditor
@@ -20,6 +21,13 @@ interface TextEditorProps {
 const options: EditorAPI.IEditorOptions = {
   fontSize: 20,
   fontWeight: 'JetBrains Mono',
+  lineNumbers: 'off',
+  minimap: {
+    enabled: true,
+    side: 'right',
+    renderCharacters: false,
+    scale: 2,
+  },
 }
 
 export function TextEditor(props: TextEditorProps) {
@@ -28,9 +36,14 @@ export function TextEditor(props: TextEditorProps) {
   const handleMount: EditorDidMount = (getter, editor) => {
     editorRef.current = editor
   }
+
   const handleChange: ControlledEditorOnChange = (e, value) => {
     if (value) props.onChange(value)
   }
+
+  useEffect(() => {
+    setupMonaco().then()
+  }, [])
 
   return (
     <ControlledEditor
@@ -39,7 +52,7 @@ export function TextEditor(props: TextEditorProps) {
       language="yaml"
       editorDidMount={handleMount}
       onChange={handleChange}
-      theme="dark"
+      theme="dracula"
       options={options}
     />
   )
