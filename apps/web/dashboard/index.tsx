@@ -11,14 +11,14 @@ export const Dashboard = () => {
     <main className="bg-darker h-screen">
       <div>
         <div className="flex">
-          <div className="w-1/2 relative">
+          <div className="w-8/12 relative">
             <BudgetGrid />
             <CommandPalette />
 
             <InputModeIndicator />
           </div>
 
-          <div className="w-1/2">
+          <div className="w-4/12">
             <Editor />
           </div>
         </div>

@@ -27,41 +27,42 @@ export function BudgetCard(props: BudgetCardProps) {
   const onCardClicked = () => dispatch('plan/toggle', {category, name})
 
   return (
-    <div
-      className={c(
-        'relative mx-auto flex flex-col rounded-lg shadow-xl w-full',
-        isFixed && 'opacity-75',
-        !selected || isSelected ? 'bg-dark' : 'bg-darker',
-        isSelected && 'shadow-2xl'
-      )}
-      onClick={onCardClicked}
-    >
-      <BudgetCardTitle {...props} />
+    <button onClick={onCardClicked}>
+      <div
+        className={c(
+          'relative mx-auto flex flex-col rounded-lg shadow-xl w-full',
+          isFixed && 'opacity-75',
+          !selected || isSelected ? 'bg-dark' : 'bg-darker',
+          isSelected && 'shadow-2xl'
+        )}
+      >
+        <BudgetCardTitle {...props} />
 
-      <div className="p-4 px-6">
-        <div className="text-4xl">
-          {icon && (
+        <div className="p-4 px-6">
+          <div className="text-4xl">
+            {icon && (
+              <div>
+                <i className={iconClass} aria-hidden />
+              </div>
+            )}
+          </div>
+
+          <div className={spendingClass}>
+            <BudgetDisplay {...props} />
+          </div>
+
+          {isExpanding && (
             <div>
-              <i className={iconClass} aria-hidden />
+              <button onClick={() => setExpanding(false)}>Close</button>
             </div>
           )}
         </div>
 
-        <div className={spendingClass}>
-          <BudgetDisplay {...props} />
-        </div>
+        {!isExpanding && <Ink opacity={0.05} />}
 
-        {isExpanding && (
-          <div>
-            <button onClick={() => setExpanding(false)}>Close</button>
-          </div>
-        )}
+        <BudgetCardPercent {...props} />
       </div>
-
-      {!isExpanding && <Ink opacity={0.05} />}
-
-      <BudgetCardPercent {...props} />
-    </div>
+    </button>
   )
 }
 

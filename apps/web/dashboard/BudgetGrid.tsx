@@ -39,7 +39,7 @@ export const BudgetGrid = () => {
   useShortcut()
 
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 md:gap-5 p-6">
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-4 gap-4 md:gap-5 p-6">
       {data.map(budget => (
         <BudgetCard key={keyOf(budget)} {...budget} />
       ))}
