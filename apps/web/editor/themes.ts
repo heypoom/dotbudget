@@ -5,6 +5,10 @@ export const DraculaTheme: EditorAPI.IStandaloneThemeData = {
   inherit: true,
   rules: [
     {
+      background: '21222d',
+      token: '',
+    },
+    {
       foreground: '6272a4',
       token: 'comment',
     },

@@ -26,7 +26,8 @@ const options: EditorAPI.IEditorOptions = {
     enabled: true,
     side: 'right',
     renderCharacters: false,
-    scale: 2,
+    scale: 1,
+    showSlider: 'mouseover',
   },
 }
 
