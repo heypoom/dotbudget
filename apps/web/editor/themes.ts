@@ -203,8 +203,8 @@ export const DraculaTheme: EditorAPI.IStandaloneThemeData = {
   colors: {
     'editor.foreground': '#f8f8f2',
     'editor.background': '#21222d',
-    'editor.selectionBackground': '#21222d',
-    'editor.lineHighlightBackground': '#21222d',
+    'editor.selectionBackground': '#44475c',
+    'editor.lineHighlightBackground': '#44475c',
     'editorCursor.foreground': '#f8f8f0',
     'editorWhitespace.foreground': '#21222d',
     'editorIndentGuide.activeBackground': '#21222d',
