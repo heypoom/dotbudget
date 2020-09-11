@@ -5,11 +5,24 @@ import {useBlueprintBudget} from './hooks/useBlueprintBudget.hook'
 
 import {useInputMode} from '../command-palette/utils/useInputMode'
 
-const PlanDisplay = (props: BudgetCardProps) => {
-  const bb = useBlueprintBudget(props)
-  const {amount = 0, spent = 0, frequency} = props
+const RemainingDisplay = (props: BudgetCardProps) => {
+  const {amount = 0, spent = 0} = props
 
   const remaining = amount - spent
+  const isOverBudget = spent > amount
+
+  return (
+    <span>
+      <span>{Math.abs(remaining)}&nbsp;</span>
+
+      <small className="font-normal">{isOverBudget ? 'over' : 'left'}</small>
+    </span>
+  )
+}
+
+const PlanDisplay = (props: BudgetCardProps) => {
+  const bb = useBlueprintBudget(props)
+  const {amount = 0, frequency} = props
 
   return (
     <div>
@@ -21,9 +34,7 @@ const PlanDisplay = (props: BudgetCardProps) => {
 
       <div className="text-lg">
         {frequency === 'monthly' ? (
-          <span>
-            {remaining} <small className="font-normal">left</small>
-          </span>
+          <RemainingDisplay {...props} />
         ) : (
           <span>
             <span>{bb?.amount}</span>
@@ -37,7 +48,7 @@ const PlanDisplay = (props: BudgetCardProps) => {
 }
 
 export function BudgetDisplay(props: BudgetCardProps) {
-  const {spent = 0, amount = 0, isFixed} = props
+  const {amount = 0, isFixed} = props
 
   const inputMode = useInputMode()
 
@@ -45,22 +56,11 @@ export function BudgetDisplay(props: BudgetCardProps) {
     return <PlanDisplay {...props} />
   }
 
-  if (!isFixed) {
-    const remaining = amount - spent
-    const isOverBudget = spent > amount
-
-    return (
-      <span>
-        <span>{Math.abs(remaining)}&nbsp;</span>
-
-        <small className="font-normal">{isOverBudget ? 'over' : 'left'}</small>
-      </span>
-    )
-  }
+  if (!isFixed) return <RemainingDisplay {...props} />
 
   return (
     <span>
-      {props.amount} <small className="font-normal">fixed</small>
+      {amount} <small className="font-normal">fixed</small>
     </span>
   )
 }
