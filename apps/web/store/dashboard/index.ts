@@ -2,11 +2,11 @@ import {StoreModule} from '../@types'
 import {InputMode} from '../@types/dashboard/DashboardState'
 
 function getNextInputModeInCycle(inputMode: InputMode): InputMode {
-  const cycles: InputMode[] = ['plan', 'spend', 'move']
+  const cycles: InputMode[] = ['spend', 'plan', 'move']
   const index = cycles.findIndex(i => i === inputMode)
   const nextIndex = index > 2 ? 0 : index + 1
 
-  return cycles[nextIndex] ?? 'plan'
+  return cycles[nextIndex] ?? 'spend'
 }
 
 export const DashboardModule: StoreModule = store => {
