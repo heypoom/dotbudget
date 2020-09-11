@@ -1,13 +1,13 @@
-import React, {useState, useRef, useEffect} from 'react'
+import React, {useRef, useEffect} from 'react'
 
 import {
   ControlledEditor,
   EditorDidMount,
-  monaco,
   ControlledEditorOnChange,
 } from '@monaco-editor/react'
 
 import {editor as EditorAPI} from 'monaco-editor/esm/vs/editor/editor.api'
+
 import {setupMonaco} from './monaco'
 
 type Getter = () => string
@@ -33,6 +33,7 @@ const options: EditorAPI.IEditorOptions = {
 
 export function TextEditor(props: TextEditorProps) {
   const editorRef = useRef<EditorInstance>()
+  const statusbarRef = useRef<HTMLDivElement>(null)
 
   const handleMount: EditorDidMount = (getter, editor) => {
     editorRef.current = editor
@@ -43,18 +44,22 @@ export function TextEditor(props: TextEditorProps) {
   }
 
   useEffect(() => {
-    setupMonaco().then()
+    setupMonaco(statusbarRef).then()
   }, [])
 
   return (
-    <ControlledEditor
-      value={props.value}
-      height="100vh"
-      language="yaml"
-      editorDidMount={handleMount}
-      onChange={handleChange}
-      theme="dracula"
-      options={options}
-    />
+    <div>
+      <ControlledEditor
+        value={props.value}
+        height="100vh"
+        language="yaml"
+        editorDidMount={handleMount}
+        onChange={handleChange}
+        theme="dracula"
+        options={options}
+      />
+
+      <div ref={statusbarRef} />
+    </div>
   )
 }

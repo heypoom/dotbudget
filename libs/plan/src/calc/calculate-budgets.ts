@@ -1,4 +1,4 @@
-import {Budget, Frequency} from '../@types'
+import {Budget} from '../@types'
 import {getExpression} from '../utils'
 
 type FrequencyAmount = Pick<Budget, 'amount' | 'frequency'>

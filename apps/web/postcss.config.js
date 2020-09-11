@@ -5,6 +5,8 @@ const purgeOptions = {
   ],
 
   defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || [],
+
+  whitelistPatternsChildren: [/monaco-editor/], // so it handles .monaco-editor .foo .bar
 }
 
 module.exports = {

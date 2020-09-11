@@ -1,5 +1,6 @@
 import {useStore} from '../../store'
-import {useInputMode} from 'apps/web/command-palette/utils/useInputMode'
+
+import {useInputMode} from '../../command-palette/utils/useInputMode'
 
 export function useSelectedCard(name: string, category: string) {
   const {plan} = useStore('plan')
