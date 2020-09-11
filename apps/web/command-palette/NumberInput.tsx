@@ -21,9 +21,7 @@ export function NumberInput() {
   const isNotNumber = !isNumeric(input) && !!input
   const isInvalid = !selected || isNotNumber
 
-  const clear = () => {
-    window.setTimeout(() => setInput(''), 20)
-  }
+  const clear = () => window.setTimeout(() => setInput(''), 20)
 
   function toggleMode(m: InputMode) {
     dispatch('dashboard/toggleInputMode', m)
@@ -32,15 +30,14 @@ export function NumberInput() {
 
   // Re-focus when the item is selected.
   useEffect(() => {
-    const t2 = setTimeout(() => {
+    const timer = setTimeout(() => {
       if (!selected || !inputRef.current) return
+
       inputRef.current.focus()
       setInput('')
     })
 
-    return () => {
-      clearTimeout(t2)
-    }
+    return () => clearTimeout(timer)
   }, [selected])
 
   if (inputMode === 'normal') return null

@@ -2,7 +2,11 @@ import React from 'react'
 import c from 'classnames'
 
 import {BudgetCardProps} from './types'
-import {useSelectedCard} from './hooks/useSelectedCard.hook'
+
+import {
+  useSelectedCard,
+  useSelectedMoveTarget,
+} from './hooks/useSelectedCard.hook'
 
 import {toBackground, toTextColor} from '../ui/colors'
 

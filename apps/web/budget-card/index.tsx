@@ -48,7 +48,7 @@ export function BudgetCard(props: BudgetCardProps) {
         isFixed && 'opacity-75',
         !selected || isSelected ? 'bg-dark' : 'bg-darker',
         isSelected && 'shadow-2xl',
-        isSelectedMoveTarget && inputMode === 'move' && 'border-orange-400'
+        isSelectedMoveTarget && 'border-orange-400'
       )}
     >
       <div className={c('relative mx-auto flex flex-col w-full rounded-lg')}>
