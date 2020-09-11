@@ -7,19 +7,22 @@ import {useInputMode} from '../command-palette/utils/useInputMode'
 
 const PlanDisplay = (props: BudgetCardProps) => {
   const bb = useBlueprintBudget(props)
+  const {amount = 0, spent = 0, frequency} = props
+
+  const remaining = amount - spent
 
   return (
     <div>
       <div>
         <span>
-          {props.amount} <small className="font-normal">monthly</small>
+          {amount} <small className="font-normal">monthly</small>
         </span>
       </div>
 
       <div className="text-lg">
-        {props.frequency === 'monthly' ? (
+        {frequency === 'monthly' ? (
           <span>
-            {props.spent} <small className="font-normal">spent</small>
+            {remaining} <small className="font-normal">left</small>
           </span>
         ) : (
           <span>
