@@ -57,9 +57,16 @@ export const PlanModule: StoreModule = store => {
   store.on('plan/reallocate', (state, event) => {
     const {blueprint, budgetable} = state.plan
 
-    const budgets = blueprint.budgets.map(b =>
-      isSelectedBudget(event, b) ? withAmount(b, event.amount) : b
-    )
+    const budgets = blueprint.budgets.map(b => {
+      if (!isSelectedBudget(event, b)) return b
+
+      const amount = calculateBudgetByFrequency({
+        amount: event.amount,
+        frequency: b.frequency,
+      })
+
+      return withAmount(b, amount)
+    })
 
     const plan = evaluatePlan({...blueprint, budgets}, budgetable)
 
