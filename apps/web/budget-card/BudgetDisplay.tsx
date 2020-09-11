@@ -11,19 +11,21 @@ const PlanDisplay = (props: BudgetCardProps) => {
   return (
     <div>
       <div>
-        <span>{bb?.amount}</span>
-
-        <small className="font-normal text-md">&nbsp;{bb?.frequency}</small>
+        <span>
+          {props.amount} <small className="font-normal">monthly</small>
+        </span>
       </div>
 
       <div className="text-lg">
-        {props.frequency !== 'monthly' ? (
+        {props.frequency === 'monthly' ? (
           <span>
-            {props.amount} <small className="font-normal">monthly</small>
+            {props.spent} <small className="font-normal">spent</small>
           </span>
         ) : (
           <span>
-            {props.spent} <small className="font-normal">spent</small>
+            <span>{bb?.amount}</span>
+
+            <small className="font-normal text-md">&nbsp;{bb?.frequency}</small>
           </span>
         )}
       </div>
