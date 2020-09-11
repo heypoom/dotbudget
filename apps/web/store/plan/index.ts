@@ -8,6 +8,10 @@ import {SamplePlanText} from './data/sample-plan-text'
 import {InputMode} from '../@types/dashboard/DashboardState'
 
 import {isSelectedBudget} from '../../utils/selection'
+import {
+  calculateBudgetByFrequency,
+  calculateMonthlyBudget,
+} from 'libs/plan/src/calc/calculate-budgets'
 
 function getSelectionInputMode(
   inputMode: InputMode,
@@ -94,16 +98,23 @@ export const PlanModule: StoreModule = store => {
     }
   })
 
+  // Input of event.amount is on a monthly basis!
+  //
   store.on('plan/moveBudget', (state, event) => {
     const {blueprint, budgetable} = state.plan
 
     const budgets = blueprint.budgets.map(b => {
+      const amount = calculateBudgetByFrequency({
+        amount: event.amount,
+        frequency: b.frequency,
+      })
+
       if (isSelectedBudget(event.from, b)) {
-        return withAmount(b, b.amount - event.amount)
+        return withAmount(b, b.amount - amount)
       }
 
       if (isSelectedBudget(event.to, b)) {
-        return withAmount(b, b.amount + event.amount)
+        return withAmount(b, b.amount + amount)
       }
 
       return b
