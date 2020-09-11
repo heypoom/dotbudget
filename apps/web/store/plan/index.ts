@@ -1,4 +1,9 @@
-import {evaluatePlanSource, evaluatePlan, withAmount} from '@dotbudget/plan'
+import {
+  evaluatePlanSource,
+  evaluatePlan,
+  withAmount,
+  calculateBudgetByFrequency,
+} from '@dotbudget/plan'
 
 import {StoreModule} from '../@types'
 
@@ -8,10 +13,6 @@ import {SamplePlanText} from './data/sample-plan-text'
 import {InputMode} from '../@types/dashboard/DashboardState'
 
 import {isSelectedBudget} from '../../utils/selection'
-import {
-  calculateBudgetByFrequency,
-  calculateMonthlyBudget,
-} from 'libs/plan/src/calc/calculate-budgets'
 
 function getSelectionInputMode(
   inputMode: InputMode,
@@ -29,7 +30,13 @@ export const PlanModule: StoreModule = store => {
     const plan = evaluatePlanSource(SamplePlanText, budgetable)
 
     return {
-      plan: {...plan, budgetable, selected: null, iconMap: defaultIconMap},
+      plan: {
+        ...plan,
+        budgetable,
+        selected: null,
+        iconMap: defaultIconMap,
+        moveTarget: null,
+      },
     }
   })
 

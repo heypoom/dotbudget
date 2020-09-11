@@ -34,3 +34,7 @@ export function calculateMonthlyPlan(
 }
 
 export * from './spending'
+export * from './calculate-budgets'
+export * from './calculate-investments'
+export * from './calculate-jars'
+export * from './calculate-unallocated'
