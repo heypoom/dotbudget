@@ -7,7 +7,7 @@ import {useCompletion} from './completions'
 import {handleCommand} from './commands'
 import {useInputMode} from './utils/useInputMode'
 
-import {useStore} from '../store'
+import {useStore, store} from '../store'
 import {NumberInput} from './NumberInput'
 
 export function CommandPalette() {
@@ -18,13 +18,14 @@ export function CommandPalette() {
   const [budget] = budgets
 
   const inputMode = useInputMode()
-  if (inputMode === 'plan' || inputMode === 'spend') return <NumberInput />
+  if (inputMode !== 'normal') return <NumberInput />
 
   function onCommand(text: string) {
     const success = handleCommand({
       budget,
       dispatch,
       args: text.trim().split(' '),
+      store,
     })
 
     if (success) setText('')

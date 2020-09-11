@@ -7,3 +7,12 @@ export function useSelectedCard(name: string, category: string) {
 
   return {isSelected, selected}
 }
+
+export function useSelectedMoveTarget(name: string, category: string) {
+  const {plan} = useStore('plan')
+  const {moveTarget} = plan
+  const isSelectedMoveTarget =
+    moveTarget?.name === name && moveTarget?.category === category
+
+  return {isSelectedMoveTarget, moveTarget}
+}

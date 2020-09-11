@@ -13,7 +13,7 @@ export function NumberInput() {
   const {dispatch} = useStore('plan', 'spending', 'dashboard')
   const inputMode = useInputMode()
 
-  const {selected} = plan
+  const {selected, moveTarget} = plan
 
   const [input, setInput] = useState('')
   const inputRef = useRef<HTMLInputElement>(null)
@@ -48,21 +48,27 @@ export function NumberInput() {
   function handleSubmit(text: string) {
     if (isInvalid || !selected) return
 
-    const payload = {...selected, amount: Number(text)}
+    const amount = Number(text)
+    const payload = {...selected, amount}
+
+    setInput('')
 
     if (inputMode === 'plan') {
       dispatch('plan/reallocate', payload)
     } else if (inputMode === 'spend') {
       dispatch('spending/log', payload)
-    }
+    } else if (inputMode === 'move') {
+      if (!moveTarget) return
 
-    setInput('')
+      dispatch('plan/moveBudget', {from: selected, to: moveTarget, amount})
+    }
   }
 
   const placeholders: Record<InputMode, string> = {
     normal: '',
     plan: 'Set budget to...',
     spend: 'Log spending of...',
+    move: 'Move spending of...',
   }
 
   function handleKeyPress(key: string) {
@@ -70,6 +76,7 @@ export function NumberInput() {
 
     if (key === 'p') return toggleMode('plan')
     if (key === 'l' || key === 's') return toggleMode('spend')
+    if (key === 'm') return toggleMode('move')
 
     if (isNotNumber) return console.log('key not number:', {key})
     // dispatch('dashboard/setInputMode', 'normal')

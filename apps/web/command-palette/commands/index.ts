@@ -2,6 +2,7 @@ import {keyOf} from '@dotbudget/plan'
 
 import {withAmount, isNumeric} from './utils'
 import {Command} from '../types'
+import {createBudgetCompletion} from '../completions'
 
 export const reallocate: Command = {
   title: 'set budget',
@@ -27,6 +28,24 @@ export const logSpending: Command = {
     dispatch('spending/log', withAmount(budget, amount)),
 }
 
-export const commandList: Command[] = [reallocate, setIcon, logSpending]
+export const moveBudget: Command = {
+  title: 'move budget',
+  aliases: ['m', 'move'],
+  validate: ([query, amount]) => isNumeric(amount),
+  onCommand: ({dispatch, budget: from, args: [query, amount], store}) => {
+    const {budgets} = store.get()?.plan?.blueprint
+    const [to] = createBudgetCompletion(query, budgets)
+    if (!to) return
+
+    dispatch('plan/moveBudget', {from, to, amount: Number(amount)})
+  },
+}
+
+export const commandList: Command[] = [
+  reallocate,
+  setIcon,
+  logSpending,
+  moveBudget,
+]
 
 export * from './handler'

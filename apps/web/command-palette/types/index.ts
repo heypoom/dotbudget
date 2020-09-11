@@ -1,7 +1,7 @@
 import {Budget} from '@dotbudget/plan'
-import {StoreonDispatch} from 'storeon'
+import {StoreonDispatch, StoreonStore} from 'storeon'
 
-import {StoreEvent} from '../../store/@types'
+import {StoreEvent, StoreState} from '../../store/@types'
 
 export interface Command {
   title: string
@@ -14,4 +14,5 @@ export interface CommandContext {
   budget: Budget
   dispatch: StoreonDispatch<StoreEvent>
   args: string[]
+  store: StoreonStore<StoreState, StoreEvent>
 }

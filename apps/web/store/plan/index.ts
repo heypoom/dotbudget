@@ -5,6 +5,20 @@ import {StoreModule} from '../@types'
 import {defaultIconMap} from './data/iconMap'
 import {SamplePlanText} from './data/sample-plan-text'
 
+import {InputMode} from '../@types/dashboard/DashboardState'
+
+import {isSelectedBudget} from '../../utils/selection'
+
+function getSelectionInputMode(
+  inputMode: InputMode,
+  selected: boolean
+): InputMode {
+  if (!selected) return 'normal'
+  if (inputMode === 'normal') return 'spend'
+
+  return inputMode
+}
+
 export const PlanModule: StoreModule = store => {
   store.on('@init', () => {
     const budgetable = 200000
@@ -33,9 +47,7 @@ export const PlanModule: StoreModule = store => {
     const {blueprint, budgetable} = state.plan
 
     const budgets = blueprint.budgets.map(b =>
-      b.name === event.name && b.category === event.category
-        ? withAmount(b, event.amount)
-        : b
+      isSelectedBudget(event, b) ? withAmount(b, event.amount) : b
     )
 
     const plan = evaluatePlan({...blueprint, budgets}, budgetable)
@@ -50,23 +62,23 @@ export const PlanModule: StoreModule = store => {
       event.name === prev?.name && event.category === prev?.category
 
     const selected = isSame ? null : event
-    const {inputMode} = state.dashboard
+    const inputMode = getSelectionInputMode(
+      state.dashboard.inputMode,
+      !!selected
+    )
 
     return {
       plan: {...state.plan, selected},
-      dashboard: {
-        ...state.dashboard,
-        inputMode: selected
-          ? inputMode === 'normal'
-            ? 'spend'
-            : inputMode
-          : 'normal',
-      },
+      dashboard: {...state.dashboard, inputMode},
     }
   })
 
   store.on('plan/select', (state, event) => ({
     plan: {...state.plan, selected: event},
+  }))
+
+  store.on('plan/selectMoveTarget', (state, event) => ({
+    plan: {...state.plan, moveTarget: event},
   }))
 
   store.on('plan/deselect', state => ({plan: {...state.plan, selected: null}}))
@@ -80,5 +92,25 @@ export const PlanModule: StoreModule = store => {
         iconMap: {...state.plan.iconMap, [event.key]: event.icon},
       },
     }
+  })
+
+  store.on('plan/moveBudget', (state, event) => {
+    const {blueprint, budgetable} = state.plan
+
+    const budgets = blueprint.budgets.map(b => {
+      if (isSelectedBudget(event.from, b)) {
+        return withAmount(b, b.amount - event.amount)
+      }
+
+      if (isSelectedBudget(event.to, b)) {
+        return withAmount(b, b.amount + event.amount)
+      }
+
+      return b
+    })
+
+    const plan = evaluatePlan({...blueprint, budgets}, budgetable)
+
+    return {plan: {...state.plan, ...plan}}
   })
 }

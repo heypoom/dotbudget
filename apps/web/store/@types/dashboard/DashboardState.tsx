@@ -1,4 +1,4 @@
-export type InputMode = 'normal' | 'spend' | 'plan'
+export type InputMode = 'normal' | 'spend' | 'plan' | 'move'
 
 export interface DashboardState {
   dashboard: {
