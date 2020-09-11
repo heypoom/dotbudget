@@ -1,16 +1,15 @@
-import React, {useState, useRef, useEffect} from 'react'
+import React, {useRef, useEffect} from 'react'
 
 import {
   ControlledEditor,
   EditorDidMount,
-  monaco,
   ControlledEditorOnChange,
 } from '@monaco-editor/react'
 
 import {editor as EditorAPI} from 'monaco-editor/esm/vs/editor/editor.api'
+
 import {setupMonaco} from './monaco'
 
-type Getter = () => string
 type EditorInstance = EditorAPI.IStandaloneCodeEditor
 
 interface TextEditorProps {
