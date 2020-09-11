@@ -22,11 +22,9 @@ export function BudgetCard(props: BudgetCardProps) {
   const inputMode = useInputMode()
 
   const {spent = 0, amount = 0, isFixed, icon, category, name} = props
+
   const {isSelected, selected} = useSelectedCard(name, category)
-  const {isSelectedMoveTarget, moveTarget} = useSelectedMoveTarget(
-    name,
-    category
-  )
+  const {isSelectedMoveTarget} = useSelectedMoveTarget(name, category)
 
   const isOverBudget = spent > amount
   const textColor = toTextColor(isOverBudget)
@@ -50,7 +48,7 @@ export function BudgetCard(props: BudgetCardProps) {
         isFixed && 'opacity-75',
         !selected || isSelected ? 'bg-dark' : 'bg-darker',
         isSelected && 'shadow-2xl',
-        isSelectedMoveTarget && 'border-orange-400'
+        isSelectedMoveTarget && inputMode === 'move' && 'border-orange-400'
       )}
     >
       <div className={c('relative mx-auto flex flex-col w-full rounded-lg')}>
