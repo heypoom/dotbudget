@@ -3,6 +3,7 @@ import {parseSpending, date, serializeSpending} from '@dotbudget/plan'
 import {SampleSpendingText} from './data/sample-spending-text'
 
 import {StoreModule} from '../@types'
+import {isSelectedBudget} from 'apps/web/utils/selection'
 
 export const SpendingModule: StoreModule = store => {
   store.on('@init', () => {
@@ -23,8 +24,14 @@ export const SpendingModule: StoreModule = store => {
   })
 
   store.on('spending/log', (state, event) => {
+    const {budgets} = state.plan.blueprint
+
     const data = [...state.spending.data, {...event, date: date()}]
     const source = serializeSpending(data)
+
+    const budget = budgets.find(b => isSelectedBudget(b, event))
+
+    if (budget?.isFixed) return
 
     return {
       spending: {...state.spending, data, source},
