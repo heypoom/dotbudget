@@ -12,6 +12,7 @@ interface TextFieldProps {
   bottom?: number
   placeholder?: string
   autoFocus?: boolean
+  disabled?: boolean
 
   children?: JSX.Element
 }
@@ -39,11 +40,13 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
             className={c(
               'text-2xl px-6 py-2 rounded-full focus:border-transparent outline-none shadow-lg bg-dark text-white',
               props.isInvalid && 'text-red placeholder-red',
+              props.disabled && 'opacity-50',
               props.className
             )}
             onKeyPress={handleKeyPress}
             placeholder={props.placeholder}
             autoFocus={props.autoFocus}
+            disabled={props.disabled}
             ref={ref}
           />
 

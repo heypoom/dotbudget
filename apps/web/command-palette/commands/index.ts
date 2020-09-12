@@ -1,6 +1,6 @@
 import {keyOf} from '@dotbudget/plan'
 
-import {withAmount, isNumeric} from './utils'
+import {withAmount, isNumeric, isFixed} from './utils'
 import {Command} from '../types'
 import {createBudgetCompletion} from '../completions'
 
@@ -23,7 +23,7 @@ export const setIcon: Command = {
 export const logSpending: Command = {
   title: 'log spending',
   aliases: ['l', 'a'],
-  validate: ([amount]) => isNumeric(amount),
+  validate: ([amount], c) => isNumeric(amount) && !isFixed(c),
   onCommand: ({dispatch, budget, args: [amount]}) =>
     dispatch('spending/log', withAmount(budget, amount)),
 }

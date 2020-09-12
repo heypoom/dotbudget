@@ -7,6 +7,14 @@ import {useInputMode} from './utils/useInputMode'
 
 import {useStore} from '../store'
 import {InputMode} from '../store/@types/dashboard/DashboardState'
+import {useBlueprintBudget} from '../budget-card/hooks/useBlueprintBudget.hook'
+
+const placeholders: Record<InputMode, string> = {
+  normal: '',
+  plan: 'Set budget to...',
+  spend: 'Log spending of...',
+  move: 'Move spending of...',
+}
 
 export function NumberInput() {
   const {plan} = useStore('plan')
@@ -14,12 +22,15 @@ export function NumberInput() {
   const inputMode = useInputMode()
 
   const {selected, moveTarget} = plan
+  const selectedBudget = useBlueprintBudget(selected)
 
   const [input, setInput] = useState('')
   const inputRef = useRef<HTMLInputElement>(null)
 
+  const isFixedSpend = inputMode === 'spend' && selectedBudget?.isFixed
+  const isDisabled = isFixedSpend
   const isNotNumber = !isNumeric(input) && !!input
-  const isInvalid = !selected || isNotNumber
+  const isInvalid = !selected || isNotNumber || isDisabled
 
   const clear = () => window.setTimeout(() => setInput(''), 20)
 
@@ -61,13 +72,6 @@ export function NumberInput() {
     }
   }
 
-  const placeholders: Record<InputMode, string> = {
-    normal: '',
-    plan: 'Set budget to...',
-    spend: 'Log spending of...',
-    move: 'Move spending of...',
-  }
-
   function handleKeyPress(key: string) {
     console.log('KeyPress:', {key, inputMode})
 
@@ -79,7 +83,14 @@ export function NumberInput() {
     // dispatch('dashboard/setInputMode', 'normal')
   }
 
-  const placeholder = selected ? placeholders[inputMode] : 'Select a budget...'
+  function getPlaceholder() {
+    if (!selected) return 'Select a budget...'
+    if (isFixedSpend) return "Can't log fixed item..."
+
+    return placeholders[inputMode]
+  }
+
+  const placeholder = getPlaceholder()
 
   return (
     <TextField
@@ -90,6 +101,7 @@ export function NumberInput() {
       isInvalid={isInvalid}
       placeholder={placeholder}
       ref={inputRef}
+      disabled={isDisabled}
     />
   )
 }

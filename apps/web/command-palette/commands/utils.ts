@@ -2,7 +2,7 @@ import {Budget} from '@dotbudget/plan'
 
 import {logSpending} from '.'
 
-import {Command} from '../types'
+import {Command, CommandContext} from '../types'
 import {BudgetWithAmount} from '../../@types/BudgetSelection'
 
 export const withAmount = (
@@ -21,3 +21,6 @@ export function getCommandArity(command: Command) {
 }
 
 export const isNumeric = (amount: string) => /^\d+$/.test(amount)
+
+export const isFixed = (c: CommandContext | undefined): boolean =>
+  c?.budget?.isFixed
