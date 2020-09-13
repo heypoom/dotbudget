@@ -73,8 +73,6 @@ export function NumberInput() {
   }
 
   function handleKeyPress(key: string) {
-    console.log('KeyPress:', {key, inputMode})
-
     if (key === 'p') return toggleMode('plan')
     if (key === 'l' || key === 's') return toggleMode('spend')
     if (key === 'm') return toggleMode('move')
@@ -95,7 +93,7 @@ export function NumberInput() {
   return (
     <TextField
       value={input}
-      onChange={setInput}
+      onChange={v => isNumeric(v) && setInput(v)}
       onEnter={handleSubmit}
       onKeyPress={handleKeyPress}
       isInvalid={isInvalid}
