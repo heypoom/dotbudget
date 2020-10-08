@@ -44,7 +44,7 @@
     "lodash": "^4.17.20",
     "monaco-editor": "^0.20.0",
     "monaco-themes": "^0.3.3",
-    "next": "9.5.2",
+    "next": "9.5.4",
     "noty": "^3.2.0-beta",
     "react": "16.13.1",
     "react-codemirror": "^1.0.0",
